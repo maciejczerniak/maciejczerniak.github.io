@@ -67,3 +67,12 @@ a.gentle-clicked {
   margin: 0 auto;     /* center horizontally */
   display: block;
 }
+
+/* Shrink the featured image at the top of the project page */
+img[alt="Amazing Theme"] {
+  max-width: 420px;   /* tweak to taste */
+  height: auto;
+  margin: 0 auto;
+  display: block;
+  border-radius: 12px;
+}
