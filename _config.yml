@@ -7,11 +7,7 @@ baseurl: /awesome-jekyll-theme
 ##
 collections:
   projects:
-    output: false
-  blog:
-    output: false
-  posts:
-    output: false
+    output: true
 
 ##
 # Contact Channels configuration
