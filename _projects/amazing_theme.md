@@ -2,15 +2,6 @@
 layout: project
 title: Amazing Theme
 image: "https://camo.githubusercontent.com/d52142cd3f34f60e6add6f6454fdd3414b424183042a6296a85f30f987b28243/68747470733a2f2f612d636861636f6e2e636f6d2f6f61735f636f72652f6173736574732f7261696c735f7468656d652e706e67"
-<video
-  controls
-  preload="metadata"
-  poster="{{ site.baseurl }}/assets/images/Photo.jpg"
-  style="width:100%;border-radius:12px;">
-  <source src="{{ site.baseurl }}/assets/videos/vxn_predictor-demo.mp4" type="video/mp4">
-  <source src="{{ site.baseurl }}/assets/videos/vxn_predictor-demo.webm" type="video/webm">
-  Sorry, your browser doesn’t support embedded videos.
-</video>
 tags:
   - tailwindcss
   - html
