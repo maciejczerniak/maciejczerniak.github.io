@@ -9,7 +9,6 @@ tags:
 <video
   controls
   preload="metadata"
-  poster="{{ site.baseurl }}/assets/images/vxn_dashboard_img.png"
   style="width:100%;border-radius:12px;">
   <source src="{{ site.baseurl }}/assets/videos/vxn_predictor-demo.mp4" type="video/mp4">
   <source src="{{ site.baseurl }}/assets/videos/vxn_predictor-demo.webm" type="video/webm">
