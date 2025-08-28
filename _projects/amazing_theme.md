@@ -2,7 +2,6 @@
 layout: project
 title: Amazing Theme
 image: "https://camo.githubusercontent.com/d52142cd3f34f60e6add6f6454fdd3414b424183042a6296a85f30f987b28243/68747470733a2f2f612d636861636f6e2e636f6d2f6f61735f636f72652f6173736574732f7261696c735f7468656d652e706e67"
-video: "https://github.com/BredaUniversityADSAI/2024-25-y1d-teamwork-group-9/blob/main/Deliverables/ILO%204/vxn_predictor-demo.mp4"
 tags:
   - tailwindcss
   - html
