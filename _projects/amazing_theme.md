@@ -6,6 +6,9 @@ tags:
   - tailwindcss
   - html
 ---
+
+Mauris eget varius turpis. Integer sit amet sollicitudin velit. Aenean ac lacus in eros cursus iaculis et id tellus. Pellentesque eu ante id mi eleifend sollicitudin nec at leo. Donec congue enim id massa vulputate, et posuere purus vehicula. Nunc euismod quam in tincidunt malesuada.
+
 <video
   controls
   preload="metadata"
@@ -14,8 +17,6 @@ tags:
   <source src="{{ site.baseurl }}/assets/videos/vxn_predictor-demo.webm" type="video/webm">
   Sorry, your browser doesn’t support embedded videos.
 </video>
-
-Mauris eget varius turpis. Integer sit amet sollicitudin velit. Aenean ac lacus in eros cursus iaculis et id tellus. Pellentesque eu ante id mi eleifend sollicitudin nec at leo. Donec congue enim id massa vulputate, et posuere purus vehicula. Nunc euismod quam in tincidunt malesuada.
 
 You can find it on Github:
 

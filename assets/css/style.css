@@ -59,3 +59,11 @@
 a.gentle-clicked {
   animation: gentle-bounce 0.3s ease-out; /* Shorter, smoother animation */
 }
+
+/* Limit project page header image size */
+.layout-project img:first-of-type {
+  max-width: 400px;   /* shrink image, e.g. 400px wide */
+  height: auto;       /* keep proportions */
+  margin: 0 auto;     /* center horizontally */
+  display: block;
+}
