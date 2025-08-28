@@ -59,20 +59,3 @@
 a.gentle-clicked {
   animation: gentle-bounce 0.3s ease-out; /* Shorter, smoother animation */
 }
-
-/* Limit project page header image size */
-.layout-project img:first-of-type {
-  max-width: 40px;   /* shrink image, e.g. 400px wide */
-  height: auto;       /* keep proportions */
-  margin: 0 auto;     /* center horizontally */
-  display: block;
-}
-
-/* Shrink the featured image at the top of the project page */
-img[alt="Amazing Theme"] {
-  max-width: 42px;   /* tweak to taste */
-  height: auto;
-  margin: 0 auto;
-  display: block;
-  border-radius: 12px;
-}
