@@ -49,8 +49,7 @@ parallel_localization: true
 # Archives configuration
 ##
 jekyll-archives:
-  enabled:
-    - categories
+  enabled: []
   # layout: blog
-  # permalinks:
-  #   category: "/category/:name/"
+  permalinks:
+    category: "/category/:name/"
