@@ -9,15 +9,7 @@ main_content: >
   # Hello Friend. Hello World.
 
 
-  **Solum remis procul; poenam, corde?** Te quoque facti agros, querorque,
-  excutis
-
-  quoque vestigia substricta caelestique posuisset litore: suaque. **Et
-  limine**, et
-
-  nimium nec io diemque vocat spicea et horror licet leto fortuna suis cum.
-  **Lecto viae, quod Naxos tumulos quoque.** Et illo de nati iuvenci oris habet,
-  perdidit parantur! **#Rails #Ruby #Python #HTML #Css #Js #AWS**
+  I'm Maciej, a second year student of Applied data Science and Artificial Inteligence at Breda University of Applied Sciences
 footer: true
 permalink: /
 ---
