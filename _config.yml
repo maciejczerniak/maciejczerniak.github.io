@@ -1,4 +1,4 @@
-title: AwesomeJT
+title: Maciej Czerniak
 logo: /assets/images/logo.avif
 baseurl: /awesome-jekyll-theme
 
@@ -7,7 +7,7 @@ baseurl: /awesome-jekyll-theme
 ##
 collections:
   projects:
-    output: true
+    output: false
   blog:
     output: false
   posts:
