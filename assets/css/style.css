@@ -62,7 +62,7 @@ a.gentle-clicked {
 
 /* Limit project page header image size */
 .layout-project img:first-of-type {
-  max-width: 400px;   /* shrink image, e.g. 400px wide */
+  max-width: 40px;   /* shrink image, e.g. 400px wide */
   height: auto;       /* keep proportions */
   margin: 0 auto;     /* center horizontally */
   display: block;
