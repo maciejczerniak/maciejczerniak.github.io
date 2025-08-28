@@ -7,6 +7,8 @@ baseurl: /awesome-jekyll-theme
 ##
 collections:
   projects:
+    output: true
+  posts:
     output: false
 
 ##
