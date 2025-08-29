@@ -5,6 +5,10 @@ image: "/assets/images/AI-driven_scale.png"
 tags:
   - streamlit
   - python
+  - image_recognition
+  - transfer_learning
+  - NN
+  - XAI
 ---
 
 Nunc eleifend dolor vitae lorem dictum rhoncus. Proin id pulvinar turpis, et eleifend quam.
