@@ -60,6 +60,7 @@ The dashboard also included a FAQ page, which explains:
 
 This provided users with important context for understanding the model and its outputs.
 
+## Demo
 
 <video
   controls
