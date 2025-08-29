@@ -5,16 +5,19 @@ image: "/assets/images/vxn_dashboard_img.png"
 tags:
   - streamlit
   - python
-  - NN
-  - predicting
+  - neural-networks
+  - forecasting
+  - finance
+  - stock-market
+  - machine-learning
 ---
 
 ## Overview
 
 This project explores whether we can predict changes in the Nasdaq-100 Volatility Index (VXN) using macroeconomic indicators and Nasdaq market data. Volatility indexes capture investor sentiment and risk expectations, making them essential for traders, portfolio managers, and retail investors.
-By applying machine learning to this problem, we aim to go beyond traditional linear forecasting methods and build models that reveal hidden relationships in financial markets. The outcome is a predictive system that can enhance alerting, improve market timing, and provide more transparency to users of *Move Tickers*, a platform focused on surfacing stock movements.
+By applying machine learning to this problem, we aim to go beyond traditional linear forecasting methods and build models that reveal hidden relationships in financial markets. The outcome is a predictive system that can enhance alerting, improve market timing, and provide more transparency to users of **Move Tickers**, a platform focused on surfacing stock movements.
 
-This project was developed as the final project of my first year at university, demonstrating early application of data science and machine learning methods to a real-world financial forecasting problem.
+This project was developed as the **final project of my first year at university**, demonstrating early application of data science and machine learning methods to a real-world financial forecasting problem.
 
 ## Problem
 
@@ -34,10 +37,10 @@ Preprocessing steps included: merging datasets by timestamp, handling missing va
 
 ## Methodology
 
-- Baselines: Naive forecast, Linear Regression, XGBoost, Random Forest Regressor, and a simple Neural Network (Multilayer Perceptron).
+- Baselines: Naive forecast, Linear Regression, XGBoost, Random Forest Regressor, and Neural Network (Multilayer Perceptron).
 - Evaluation: Models were compared across three iterations, with each iteration testing stability and consistency of performance.
 - Validation: Time-based holdout (2015–2022 train, 2023–2025 validation) with rolling backtesting.
-- Metrics: coefficient of determination (R²), mean absolute error (MAE) and root mean sqare error (RMSE).
+- Metrics: coefficient of determination (R²), mean absolute error (MAE) and root mean square error (RMSE).
 
 ## 🔑 Results
 
@@ -49,7 +52,7 @@ Preprocessing steps included: merging datasets by timestamp, handling missing va
 
 ## Deployment
 
-At the request of `Move Tickers`, a Streamlit dashboard was developed to present interactive charts and forecasts as a standalone application.
+At the request of **Move Tickers**, a Streamlit dashboard was developed to present interactive charts and forecasts as a standalone application.
 
 The dashboard also included a FAQ page, which explains:
 
@@ -71,7 +74,7 @@ This provided users with important context for understanding the model and its o
   Sorry, your browser doesn’t support embedded videos.
 </video>
 
-\* *Move Tickers was a fictional client created by the university for the purposes of this project.* 
+\* * **Move Tickers** was a fictional client created by the university for the purposes of this project.* 
 
 You can find it on Github:
 
