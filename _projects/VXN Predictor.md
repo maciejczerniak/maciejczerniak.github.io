@@ -74,7 +74,7 @@ This provided users with important context for understanding the model and its o
   Sorry, your browser doesn’t support embedded videos.
 </video>
 
-\* * **Move Tickers** was a fictional client created by the university for the purposes of this project.* 
+\* **Move Tickers** was a fictional client created by the university for the purposes of this project.
 
 You can find it on Github:
 
