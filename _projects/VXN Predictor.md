@@ -42,7 +42,7 @@ Preprocessing steps included: merging datasets by timestamp, handling missing va
 - Validation: Time-based holdout (2015–2022 train, 2023–2025 validation) with rolling backtesting.
 - Metrics: coefficient of determination (R²), mean absolute error (MAE) and root mean square error (RMSE).
 
-## 🔑 Results
+## Results
 
 - Correlation-driven features such as lagged values, rolling means, and exponentially weighted moving averages improved predictability.
 - Backtesting showed that models consistently captured 1-day ahead VXN movements with higher accuracy than baselines.
