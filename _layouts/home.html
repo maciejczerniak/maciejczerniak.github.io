@@ -76,19 +76,13 @@ layout: default
         {% include project_card.html project=project %} 
       {% endfor %}
     </div>
-    <div class="pt-10 pr-2 text-end relative z-20" data-motion="fadeInUp">
+    <div class="pt-4 text-end" data-motion="fadeInUp">
       <a
-        href="{{ '/projects' | relative_url }}"
-        class="group inline-flex items-center gap-2 rounded-xl px-6 py-3 text-base font-semibold
-              bg-sky-500 text-white shadow-lg ring-1 ring-sky-400/50
-              hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500
-              cta-attn"
-        aria-label="See more projects"
+        class="font-mulish text-lg hover:text-sky-400 hover:underline font-bold"
+        href="{{'/projects' | relative_url }}"
       >
-        See more projects
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-        </svg>
+        {{ site.data[site.active_lang].strings.home.see_more_projects | default:
+        site.data['en'].strings.home.see_more_projects }}
       </a>
     </div>
   </div>
