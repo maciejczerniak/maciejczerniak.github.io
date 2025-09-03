@@ -2219,19 +2219,18 @@ a.gentle-clicked {
 }
 
 /* Default (dark mode) – lighter glow */
+/* Pulse effect for CTAs */
+@keyframes ctaBlink {
+  0%, 100% {
+    transform: scale(1);
+    text-shadow: 0 0 6px rgba(17, 24, 39, 0.35);
+  }
+  50% {
+    transform: scale(1.05);
+    text-shadow: 0 0 10px rgba(34, 48, 78, 0.5);
+  }
+}
 .cta-attn {
-  display: inline-block;
+  display: inline-block; /* so transform works */
   animation: ctaBlink 2.4s ease-in-out infinite;
-  text-shadow: 0 0 300px rgba(62, 57, 57, 0.513); /* subtle dark glow */
-}
-
-/* Light mode – darker glow */
-.dark .cta-attn {
-  text-shadow: 0 0 300px rgba(255, 255, 255, 0.35);
-}
-.dark .cta-attn {
-  animation: ctaBlink 2.4s ease-in-out infinite;
-}
-.dark .cta-attn {
-  text-shadow: 0 0 500px rgba(136, 145, 152, 0.5);
 }
