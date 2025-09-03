@@ -63,7 +63,7 @@ a.gentle-clicked {
 /* Vertical arrow stack on the right */
 #arrow-nav{
   position: fixed;
-  right: 16px;
+  left: 16px;
   top: 50%;
   transform: translateY(-50%);
   display: grid;
@@ -71,7 +71,7 @@ a.gentle-clicked {
   z-index: 50;
 }
 #arrow-nav .arrow{
-  width: 44px; height: 44px;
+  width: 60px; height: 60px;
   border: none; border-radius: 9999px;
   background: rgba(255,255,255,.9);
   color: #111827; cursor: pointer;
