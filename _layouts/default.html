@@ -3,9 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Styles -->
     <link href="{{ '/assets/css/dist-style.css' | relative_url }}" rel="stylesheet" />
     <link href="{{ '/assets/css/fonts.css' | relative_url }}" rel="stylesheet" />
 
+    <!-- Motion -->
     <script src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js"></script>
     <script>
       const { animate, scroll } = Motion
@@ -14,6 +17,23 @@
     {% seo %}
     {% include custom_head.html %}
   </head>
+
+    <!-- Arrow navigation (site-wide or wrap in {% if page.url == "/" %} for homepage only) -->
+    <nav id="arrow-nav" aria-label="Section navigation">
+      <button type="button" id="prev" class="arrow" aria-label="Previous section" disabled>
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+          <path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button type="button" id="next" class="arrow" aria-label="Next section">
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+          <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </nav>
+
 
   <body class="bg-neutral-50 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-200">
     {% include navbar.html %} 
