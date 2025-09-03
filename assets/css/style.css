@@ -90,13 +90,13 @@ a.gentle-clicked {
   0%, 100% { 
     transform: scale(1);
     text-shadow: 
-    0 0 4 rgb(0, 0, 0),
-    0 0 10 rgba(0, 0, 0, 0.694); }
+    0 0 4 rgba(0, 0, 0, 0.983),
+    0 0 10 rgba(0, 0, 0, 0.983); }
   50%      { 
     transform: scale(1.04);
     text-shadow:
-    0 0 24px rgba(0, 0, 0, 0.937),
-    0 0 30px rgba(0, 0, 0, 0.937); }
+    0 0 24px rgba(0, 0, 0, 1),
+    0 0 30px rgba(0, 0, 0, 1); }
 }
 @keyframes ctaBlinkDark {
   0%, 100% { 
