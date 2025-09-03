@@ -18,7 +18,14 @@
     {% include custom_head.html %}
   </head>
 
-    <!-- Arrow navigation (site-wide or wrap in {% if page.url == "/" %} for homepage only) -->
+  
+  <body class="bg-neutral-50 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-200">
+    {% include navbar.html %} 
+    {{ content }} 
+    {% include footer.html %}
+
+    <!-- ▼ Arrow navigation must be INSIDE <body>, before </body> -->
+    {% if page.url == "/" %}
     <nav id="arrow-nav" aria-label="Section navigation">
       <button type="button" id="prev" class="arrow" aria-label="Previous section" disabled>
         <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
@@ -33,14 +40,9 @@
         </svg>
       </button>
     </nav>
+    {% endif %}
+    <!-- ▲ Arrow nav -->
 
-    <!-- Load the navigation script -->
-    <script defer src="{{ '/assets/js/dot-navigation.js' | relative_url }}"></script>
-
-  <body class="bg-neutral-50 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-200">
-    {% include navbar.html %} 
-      {{ content }} 
-    {% include footer.html %}
     <script>
       document.querySelectorAll("a").forEach(function (link) {
         link.addEventListener("click", function (event) {
@@ -197,5 +199,7 @@
         })
       })
     </script>
+    <!-- Load the arrows+dots JS (the SECOND script we discussed) -->
+    <script defer src="{{ '/assets/js/dot-navigation.js' | relative_url }}"></script>
   </body>
 </html>
