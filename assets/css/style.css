@@ -84,3 +84,10 @@ a.gentle-clicked {
 @media (max-width:640px){
   #arrow-nav{ right: 50%; left: 50%; top: auto; bottom: 16px; transform: translateX(-50%); grid-auto-flow: column; }
 }
+
+/* Pulse effect for CTAs */
+@keyframes ctaPulse { 
+  0%,100% { transform: scale(1); } 
+  50% { transform: scale(1.05); } 
+}
+.cta-pulse { animation: ctaPulse 2.2s ease-in-out infinite; }
