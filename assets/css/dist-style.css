@@ -2212,14 +2212,26 @@ a.gentle-clicked {
 @keyframes ctaBlink {
   0%, 100% {
     transform: scale(1);
-    text-shadow: 0 0 10px rgba(229, 236, 251, 0.35);
   }
   50% {
     transform: scale(1.05);
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
   }
 }
+
+/* Default (light mode) – darker glow */
 .cta-attn {
-  display: inline-block; /* so transform works */
+  display: inline-block;
   animation: ctaBlink 2.4s ease-in-out infinite;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.25); /* subtle dark glow */
+}
+
+/* Dark mode – lighter glow */
+.dark .cta-attn {
+  text-shadow: 0 0 10px rgba(229, 236, 251, 0.35);
+}
+.dark .cta-attn {
+  animation: ctaBlink 2.4s ease-in-out infinite;
+}
+.dark .cta-attn {
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
 }
