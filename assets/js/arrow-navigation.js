@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const upBtn = document.getElementById("arrow-up");
   const downBtn = document.getElementById("arrow-down");
 
-  const TOP_OFFSET = 80; // adjust if you have a fixed header
+  const TOP_OFFSET = 10; // adjust if you have a fixed header
   let currentIndex = 0;
 
   function clamp(n, min, max) {
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function updateArrows() {
-    upBtn.disabled = currentIndex <= sections.length - 1;
+    upBtn.disabled = currentIndex <= 0;
     downBtn.disabled = currentIndex >= sections.length - 1;
   }
 
