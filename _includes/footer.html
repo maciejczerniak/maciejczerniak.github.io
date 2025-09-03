@@ -1,7 +1,7 @@
 {% capture currentYear %}{{ 'now' | date: '%Y' }}{% endcapture %}
 <footer id="footer">
 <footer class="w-full bottom-0">
-  <hr class="my-8 border-zinc-200 dark:border-neutral-700" />
+  <hr class="my-8 border-zinc-200 dark:border-gray-200" />
   <div class="container mx-auto">
     <div class="flex flex-wrap text-left">
       <div class="w-full md:w-6/12 md:px-4">
@@ -19,7 +19,7 @@
       <div class="w-full md:w-6/12 md:text-right py-4 md:py-0">
         <div class="flex flex-wrap items-top mb-6">
           <div class="w-full lg:w-4/12 md:px-4 ml-auto">
-            <span class="text-lg block text-gray-800 dark:text-neutral-200 mb-2">
+            <span class="text-lg block text-black dark:text-white mb-2">
               {{ site.data[site.active_lang].strings.footer.pages | default:
               site.data['en'].strings.footer.pages}}
             </span>
