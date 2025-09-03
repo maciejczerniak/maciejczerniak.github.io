@@ -20,8 +20,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function updateArrows() {
-    upBtn.disabled = currentIndex <= 0;
-    downBtn.disabled = currentIndex >= sections.length - 1;
+    upBtn.disabled = currentIndex <= 1;
+    downBtn.disabled = currentIndex >= sections.length;
   }
 
   function scrollToIndex(index) {
