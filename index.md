@@ -1,6 +1,6 @@
 ---
-layout: home
-title: Home
+layout: default
+title: default
 description: >-
   Especializado en el desarrollo de API RESTs con Ruby on Rails. He participado
   en diversas etapas del ciclo de desarrollo de aplicaciones.
