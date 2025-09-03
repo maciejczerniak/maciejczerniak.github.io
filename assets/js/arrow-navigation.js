@@ -35,8 +35,13 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function scrollToIndex(index) {
-    // index can be 0..sections.length ; where length means "scroll to bottom"
-    const targetIndex = clamp(index, 0, sections.length);
+    // clamp to [0, sections.length] where length === "bottom"
+    const targetIndex = Math.max(0, Math.min(index, sections.length));
+
+    // ✅ Update index immediately so rapid clicks don't skip
+    currentIndex = targetIndex;
+    updateArrows();
+
     isProgrammatic = true;
 
     if (targetIndex === sections.length) {
@@ -80,12 +85,10 @@ document.addEventListener("DOMContentLoaded", function () {
     if (e.key === "ArrowUp"   || e.key === "PageUp")   { e.preventDefault(); scrollToIndex(currentIndex - 1); }
   });
 
-  // Init (honor hash if present; if page loads at bottom, treat as bottom)
-  if (atPageBottom()) {
-    currentIndex = sections.length;
-  } else {
-    const hashIndex = sections.findIndex(s => `#${s.id}` === location.hash);
-    currentIndex = hashIndex !== -1 ? hashIndex : getCurrentIndexFromScroll();
-  }
+  // Init
+  currentIndex = atPageBottom()
+    ? sections.length
+    : (sections.findIndex(s => `#${s.id}` === location.hash) ?? -1);
+  if (currentIndex === -1) currentIndex = getCurrentIndexFromScroll();
   updateArrows();
 });
