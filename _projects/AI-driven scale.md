@@ -37,9 +37,9 @@ Can AI improve speed, accuracy, and hygiene in the produce weighing process?
 ## Business Value
 
 - **Operational efficiency:** Time per transaction reduced by up to 60%. For a store processing 5,000 weighings/day, this equals ~7 hours saved daily.
-- Cost savings: Preventing even 1–2% shrink (mislabeling losses) can save tens of thousands annually in a mid-sized supermarket.
-- Improved user experience: Faster, intuitive interactions with fewer steps.
-- Market opportunity: Limited adoption in Europe (Netherlands, Poland), making it a strong differentiator.
+- **Cost savings:** Preventing even 1–2% shrink (mislabeling losses) can save tens of thousands annually in a mid-sized supermarket.
+- **Improved user experience:** Faster, intuitive interactions with fewer steps.
+- **Market opportunity:** Limited adoption in Europe (Netherlands, Poland), making it a strong differentiator.
 
 ## Human-Centered Design
 
@@ -58,10 +58,10 @@ The prototype was developed with human-centered AI principles:
 ## Deployment
 
 A **Streamlit** prototype was built to simulate the scale’s workflow, including:
-- Image capture/upload.
-- Produce identification and price display.
-- Label generation simulation.
-- XAI (LIME/Grad-CAM) explanations.
+- **Image capture/upload.**
+- **Produce identification** and weight display.
+- **Label generation** simulation.
+- **XAI** (LIME/Grad-CAM) explanations.
 
 A final demo video was created to showcase end-to-end functionality. You can find it at the bottom of this page.
 
@@ -72,6 +72,7 @@ A final demo video was created to showcase end-to-end functionality. You can fin
 - **Validated design through usability testing**, confirming intuitive flow and hygiene benefits.
 - **Established strong business case for supermarkets:** lower shrink, faster throughput, and improved customer satisfaction.
 
+## Demo
 
 <video
   controls
