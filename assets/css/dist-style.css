@@ -2212,11 +2212,11 @@ a.gentle-clicked {
 @keyframes ctaBlink {
   0%, 100% {
     transform: scale(1);
-    text-shadow: 0 0 6px rgba(98, 120, 166, 0.35);
+    text-shadow: 0 0 10px rgba(229, 236, 251, 0.35);
   }
   50% {
     transform: scale(1.05);
-    text-shadow: 0 0 10px rgba(178, 186, 202, 0.5);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
   }
 }
 .cta-attn {
