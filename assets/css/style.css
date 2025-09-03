@@ -89,16 +89,16 @@ a.gentle-clicked {
 .cta-attn {
   display: inline-block;
   animation: ctaBlink 2.4s ease-in-out infinite;
-  text-shadow: 0 0 30px rgba(255, 255, 255, 0.513); /* subtle dark glow */
+  text-shadow: 0 0 300px rgba(255, 255, 255, 0.513); /* subtle dark glow */
 }
 
 /* Light mode – darker glow */
 .light .cta-attn {
-  text-shadow: 0 0 30px rgba(0, 0, 0, 0.35);
+  text-shadow: 0 0 300px rgba(255, 248, 248, 0.35);
 }
 .light .cta-attn {
   animation: ctaBlink 2.4s ease-in-out infinite;
 }
 .light .cta-attn {
-  text-shadow: 0 0 50px rgba(51, 56, 60, 0.5);
+  text-shadow: 0 0 500px rgba(51, 56, 60, 0.5);
 }
