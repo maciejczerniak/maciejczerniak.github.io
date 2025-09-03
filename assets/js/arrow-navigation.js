@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function updateArrows() {
-    upBtn.disabled = currentIndex <= 0;
+    upBtn.disabled = currentIndex <= sections.length - 1;
     downBtn.disabled = currentIndex >= sections.length - 1;
   }
 
