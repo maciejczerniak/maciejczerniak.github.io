@@ -87,12 +87,12 @@ a.gentle-clicked {
 
 /* Scale + glow animation */
 @keyframes ctaBlinkLight {
-  0%, 100% { transform: scale(1);   text-shadow: 0 0 0 rgba(0,0,0,0); }
-  50%      { transform: scale(1.04); text-shadow: 0 0 12px rgba(0,0,0,0.45); }
+  0%, 100% { transform: scale(1);   text-shadow: 0 0 0 rgb(255, 0, 0); }
+  50%      { transform: scale(1.04); text-shadow: 0 0 12px rgba(20, 3, 255, 0.45); }
 }
 @keyframes ctaBlinkDark {
-  0%, 100% { transform: scale(1);   text-shadow: 0 0 0 rgba(255,255,255,0); }
-  50%      { transform: scale(1.04); text-shadow: 0 0 14px rgba(255,255,255,0.65); }
+  0%, 100% { transform: scale(1);   text-shadow: 0 0 0 rgba(255, 0, 0, 0.912); }
+  50%      { transform: scale(1.04); text-shadow: 0 0 14px rgba(0, 38, 230, 0.65); }
 }
 
 /* Default (light mode) */
