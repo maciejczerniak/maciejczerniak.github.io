@@ -1,78 +1,79 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   const sections = Array.from(document.querySelectorAll("section[id]"));
   const navDots = Array.from(document.querySelectorAll("#dot-nav .dot"));
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // Map: section id -> dot element
-  const dotById = new Map(navDots.map(d => [d.getAttribute("href").slice(1), d]));
-
-  // If you have a fixed header, adjust this
-  const HEADER_OFFSET = 80;
-
-  // Throttle scroll handler with rAF
-  let ticking = false;
+  // Map href -> element once
+  const targetMap = new Map(
+    navDots
+      .map((dot) => [dot.getAttribute("href"), document.querySelector(dot.getAttribute("href"))])
+      .filter(([, el]) => el) // keep only existing
+  );
 
   function setActive(id) {
-    navDots.forEach(dot =>
-      dot.classList.toggle("is-active", dot.getAttribute("href") === `#${id}`)
-    );
-  }
-
-  function onScroll() {
-    if (ticking) return;
-    ticking = true;
-
-    requestAnimationFrame(() => {
-      // Use viewport center for robust detection across sections of different heights
-      const viewportCenter = window.innerHeight / 2;
-      let currentId = sections[0]?.id;
-
-      for (const sec of sections) {
-        const rect = sec.getBoundingClientRect();
-        // Consider "active" if the section spans the viewport center (accounting for header)
-        if (rect.top - HEADER_OFFSET <= viewportCenter && rect.bottom > viewportCenter) {
-          currentId = sec.id;
-          break;
-        }
-      }
-      setActive(currentId);
-      ticking = false;
+    const href = `#${id}`;
+    navDots.forEach((dot) => {
+      const isActive = dot.getAttribute("href") === href;
+      dot.classList.toggle("bg-gray-800", isActive);
+      dot.setAttribute("aria-current", isActive ? "page" : "false");
     });
   }
 
-  function smoothScroll(target) {
-    const el = document.querySelector(target);
+  // Click/keyboard: smooth scroll (respect reduced motion), then focus section
+  function goTo(href) {
+    const el = targetMap.get(href);
     if (!el) return;
-    // Manual smooth scroll that respects fixed header
-    const y = el.getBoundingClientRect().top + window.pageYOffset - HEADER_OFFSET;
-    window.scrollTo({ top: y, behavior: "smooth" });
-    // Update hash without jump
-    history.replaceState(null, "", target);
+
+    if (!prefersReducedMotion && "scrollIntoView" in el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      el.scrollIntoView(); // instant
+    }
+
+    // Move focus for keyboard/screen-reader users after the scroll completes
+    // Use a rAF to allow layout to settle.
+    requestAnimationFrame(() => el.focus({ preventScroll: true }));
+    history.replaceState(null, "", href); // update URL hash without jump
   }
 
-  // Click + keyboard accessibility
   navDots.forEach((dot) => {
-    dot.addEventListener("click", function (event) {
-      event.preventDefault();
-      smoothScroll(this.getAttribute("href"));
+    dot.addEventListener("click", (e) => {
+      e.preventDefault();
+      goTo(dot.getAttribute("href"));
     });
+    // Space/Enter support is automatic for links, but this ensures consistency if rendered as buttons
     dot.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
+      if (e.key === " " || e.key === "Enter") {
         e.preventDefault();
-        smoothScroll(dot.getAttribute("href"));
+        goTo(dot.getAttribute("href"));
       }
     });
-    // Make sure dots are focusable for keyboard users
-    dot.setAttribute("tabindex", "0");
-    dot.setAttribute("role", "link");
   });
 
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll(); // set initial active dot
+  // Observe which section is centered in the viewport
+  // Tweak rootMargin/threshold to match your header height and feel.
+  const observer = new IntersectionObserver(
+    (entries) => {
+      // Pick the most visible intersecting section
+      const visible = entries
+        .filter((e) => e.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
 
-  // Brief pulse on load to draw attention (optional; add CSS below)
-  const nav = document.getElementById("dot-nav");
-  if (nav) {
-    nav.classList.add("pulse-once");
-    setTimeout(() => nav.classList.remove("pulse-once"), 1200);
+      if (visible?.target?.id) setActive(visible.target.id);
+    },
+    {
+      // If you have a fixed header ~120px, push the top boundary down.
+      root: null,
+      rootMargin: "-120px 0px -40% 0px",
+      threshold: [0.4, 0.6, 0.8],
+    }
+  );
+
+  sections.forEach((s) => observer.observe(s));
+
+  // On load: honor hash or default to the first section
+  const initialHash = window.location.hash && targetMap.has(window.location.hash) ? window.location.hash : `#${sections[0]?.id}`;
+  if (initialHash) {
+    setActive(initialHash.replace("#", ""));
   }
 });
