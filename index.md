@@ -15,7 +15,7 @@ permalink: /
 ---
 
 <div class="mt-6">
-  <a href="{{ '/projects.html/' | relative_url }}"
+  <a href="{{ '/projects.html' | relative_url }}"
      class="inline-flex items-center gap-2 px-4 py-3 rounded-full bg-neutral-900 text-white no-underline font-semibold shadow hover:opacity-90 transition">
     <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
       <path d="M12 5v14M12 19l-6-6m6 6l6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
@@ -24,7 +24,7 @@ permalink: /
   </a>
 </div>
 
-<a href="{{ '/projects.html/' | relative_url }}"
+<a href="{{ '/projects.html' | relative_url }}"
    class="absolute left-1/2 bottom-6 -translate-x-1/2 inline-flex flex-col items-center gap-1 text-neutral-200 opacity-80 hover:opacity-100 transition no-underline"
    aria-label="Scroll to projects">
   <span class="text-sm">Scroll</span>
