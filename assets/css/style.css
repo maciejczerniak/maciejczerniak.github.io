@@ -57,7 +57,7 @@
 }
 
 a.gentle-clicked {
-  animation: gentle-bounce 0.3s ease-out; /* Shorter, smoother animation */
+  animation: gentle-bounce 0.1s ease-out; /* Shorter, smoother animation */
 }
 
 /* Primary CTA button */
