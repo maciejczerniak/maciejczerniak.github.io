@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const upBtn    = document.getElementById("arrow-up");
   const downBtn  = document.getElementById("arrow-down");
 
-  const TOP_OFFSET = 80; // adjust for your fixed navbar height if needed
+  const TOP_OFFSET = 50; // adjust for your fixed navbar height if needed
   let currentIndex = 0;          // 0..sections.length ; note: length == "bottom"
   let isProgrammatic = false;    // block scroll handler during our own smooth scroll
   let scrollTimer = null;
