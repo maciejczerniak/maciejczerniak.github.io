@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function updateArrows() {
     upBtn.disabled = currentIndex <= 1;
-    downBtn.disabled = currentIndex >= sections.length;
+    downBtn.disabled = currentIndex >= sections.length - 1;
   }
 
   function scrollToIndex(index) {
