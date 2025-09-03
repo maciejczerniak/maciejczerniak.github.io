@@ -2208,14 +2208,15 @@ a.gentle-clicked {
   syntax: "*";
   inherits: false;
 }
+/* Pulse effect for CTAs */
 @keyframes ctaBlink {
   0%, 100% {
     transform: scale(1);
-    box-shadow: 0 8px 24px rgba(14,165,233,.35);
+    box-shadow: 0 8px 24px rgba(17, 24, 39, 0.35);
   }
   50% {
     transform: scale(1.05);
-    box-shadow: 0 12px 30px rgba(14,165,233,.50);
+    box-shadow: 0 12px 30px rgba(34, 48, 78, 0.5);
   }
 }
 .cta-attn {
