@@ -59,3 +59,13 @@
 a.gentle-clicked {
   animation: gentle-bounce 0.1s ease-out; /* Shorter, smoother animation */
 }
+
+/* Active state the JS toggles */
+#dot-nav .dot.is-active {
+  background: #fff;            /* or your accent color */
+  transform: scale(1.15);
+}
+
+/* Optional: a quick attention pulse on load */
+@keyframes pulse { 0%{opacity:.6; transform:scale(1)} 50%{opacity:1; transform:scale(1.06)} 100%{opacity:.6; transform:scale(1)} }
+#dot-nav.pulse-once .dot { animation: pulse .6s ease-in-out 2; }
