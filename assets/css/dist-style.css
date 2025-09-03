@@ -2208,23 +2208,3 @@ a.gentle-clicked {
   syntax: "*";
   inherits: false;
 }
-/* Scale + glow animation */
-@keyframes ctaBlinkLight {
-  0%, 100% { transform: scale(1);   text-shadow: 0 0 0 rgb(0, 255, 0); }
-  50%      { transform: scale(1.04); text-shadow: 0 0 12px rgba(20, 3, 255, 0.45); }
-}
-@keyframes ctaBlinkDark {
-  0%, 100% { transform: scale(1);   text-shadow: 0 0 0 rgb(246, 235, 235); }
-  50%      { transform: scale(1.04); text-shadow: 0 0 14px rgba(0, 38, 230, 0.65); }
-}
-
-/* Default (light mode) */
-.cta-attn {
-  display: inline-block;            /* needed for transform */
-  animation: ctaBlinkLight 2.5s ease-in-out infinite;
-}
-
-/* Dark mode override (the <html> element has class="dark") */
-.dark .cta-attn {
-  animation: ctaBlinkDark 2.5s ease-in-out infinite;
-}

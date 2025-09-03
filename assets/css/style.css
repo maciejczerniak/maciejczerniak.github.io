@@ -87,22 +87,21 @@ a.gentle-clicked {
 
 /* Scale + glow animation */
 @keyframes ctaBlinkLight {
-  0%, 100% { transform: scale(1);   text-shadow: 0 0 0 rgb(0, 255, 0); }
-  50%      { transform: scale(1.04); text-shadow: 0 0 12px rgba(20, 3, 255, 0.45); }
+  0%, 100% { transform: scale(1);   text-shadow: 0 0 0 rgba(0,0,0,0); }
+  50%      { transform: scale(1.04); text-shadow: 0 0 12px rgba(0,0,0,0.45); }
 }
 @keyframes ctaBlinkDark {
-  0%, 100% { transform: scale(1);   text-shadow: 0 0 0 rgb(246, 235, 235); }
-  50%      { transform: scale(1.04); text-shadow: 0 0 14px rgba(0, 38, 230, 0.65); }
+  0%, 100% { transform: scale(1);   text-shadow: 0 0 0 rgba(55, 45, 194, 0.564); }
+  50%      { transform: scale(1.04); text-shadow: 0 0 14px rgba(255, 255, 255, 0.937); }
 }
 
 /* Default (light mode) */
 .cta-attn {
   display: inline-block;            /* needed for transform */
-  animation: ctaBlinkLight 2.5s ease-in-out infinite;
+  animation: ctaBlinkLight 2.2s ease-in-out infinite;
 }
 
 /* Dark mode override (the <html> element has class="dark") */
 .dark .cta-attn {
-  animation: ctaBlinkDark 2.5s ease-in-out infinite;
+  animation: ctaBlinkDark 2.2s ease-in-out infinite;
 }
-
