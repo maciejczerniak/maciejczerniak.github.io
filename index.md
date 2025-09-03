@@ -14,15 +14,6 @@ footer: true
 permalink: /
 ---
 
-<section id="home">
-  <h1>Welcome</h1>
-  <p>Intro content…</p>
-</section>
-
-<section id="projects">
-  <h2>Projects</h2>
-  <p>Your portfolio items go here…</p>
-</section>
 
 ## My story
 
