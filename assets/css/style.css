@@ -86,8 +86,16 @@ a.gentle-clicked {
 }
 
 /* Pulse effect for CTAs */
-@keyframes ctaPulse { 
-  0%,100% { transform: scale(1); } 
-  50% { transform: scale(1.05); } 
+@keyframes ctaBlink {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 8px 24px rgba(14,165,233,.35);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 12px 30px rgba(14,165,233,.50);
+  }
 }
-.cta-pulse { animation: ctaPulse 2.2s ease-in-out infinite; }
+.cta-attn {
+  animation: ctaBlink 2.4s ease-in-out infinite;
+}
