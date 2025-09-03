@@ -7,10 +7,11 @@
         {{ site.title }}
         <span class="text-mulish text-sm font-normal">
           {%- if page.url == "/" -%}
+            → Home
           {%- elsif page.collection == "projects" -%}
             → Projects{% if page.title %} → {{ page.title }}{% endif %}
           {%- else -%}
-            → {{ page.title | default: page.name | replace: ".html","" }}
+            {{ page.title | default: page.name | replace: ".html","" }}
           {%- endif -%}
         </span>
       </p>
