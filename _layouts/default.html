@@ -25,6 +25,7 @@
     {% include footer.html %}
 
     <!-- Up/Down arrows -->
+    {% if page.url == "/" %}
     <nav id="arrow-nav" aria-label="Section navigation">
       <button type="button" id="arrow-up"   class="arrow" aria-label="Previous section" disabled>
         <!-- Up chevron -->
