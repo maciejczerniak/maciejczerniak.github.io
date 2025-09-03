@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function updateArrows() {
     // allow one extra "down" step to the bottom
-    upBtn.disabled   = currentIndex <= 0;
+    upBtn.disabled   = currentIndex <= 1;
     downBtn.disabled = currentIndex >= sections.length;
   }
 
