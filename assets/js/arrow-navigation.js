@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const sections = Array.from(document.querySelectorAll("section[id]"));
+  const sections = Array.from(document.querySelectorAll("section[id], footer[id]"));
   const upBtn = document.getElementById("arrow-up");
   const downBtn = document.getElementById("arrow-down");
 
