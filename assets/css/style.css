@@ -102,8 +102,8 @@ a.gentle-clicked {
   0%, 100% { 
     transform: scale(1);
     text-shadow:
-    0 0 4 rgba(55, 45, 194, 0.564),
-    0 0 10 rgba(55, 45, 194, 0.564); }
+    0 0 4 rgb(255, 255, 255),
+    0 0 10 rgba(255, 255, 255, 0.694); }
   50%      {
     transform: scale(1.04);
     text-shadow:
