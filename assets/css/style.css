@@ -95,8 +95,8 @@ a.gentle-clicked {
   50%      { 
     transform: scale(1.04);
     text-shadow:
-    0 0 24px rgba(0, 0, 0, 0.593),
-    0 0 30px rgba(0,0,0,0.593); }
+    0 0 24px rgba(0, 0, 0, 0.937),
+    0 0 30px rgba(0, 0, 0, 0.937); }
 }
 @keyframes ctaBlinkDark {
   0%, 100% { 
