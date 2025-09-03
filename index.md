@@ -13,6 +13,25 @@ main_content: >
 footer: true
 permalink: /
 ---
+
+<div class="hero-cta">
+  <a href="{{ '/projects/' | relative_url }}" class="btn-primary">
+    <!-- inline icon -->
+    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="margin-right:8px;">
+      <path d="M12 5v14M12 19l-6-6m6 6l6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    See Projects
+  </a>
+</div>
+
+<a href="{{ '/projects/' | relative_url }}" class="scroll-cue" aria-label="Scroll to projects">
+  <span>Scroll</span>
+  <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</a>
+
+
 ## My story
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean consequat porta lorem, non auctor magna aliquet ac. Nam finibus in massa quis molestie. Vestibulum malesuada iaculis consequat. Phasellus sagittis, nisl non semper vestibulum, tellus enim interdum purus, ac pretium magna lectus ac turpis. Phasellus scelerisque hendrerit magna vitae fermentum. Praesent facilisis erat viverra eros tristique, id faucibus eros volutpat. Duis tempus arcu in felis sollicitudin, in sodales leo scelerisque. Nullam dapibus libero eu iaculis rhoncus.
