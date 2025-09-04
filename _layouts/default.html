@@ -118,7 +118,7 @@
         function animateElement(element, type) {
           // Get custom delay and duration from data attributes
           const customDelay = parseFloat(element.getAttribute('data-motion-delay')) || 0;
-          const customDuration = parseFloat(element.getAttribute('data-motion-duration')) || (type === 'stagger-cards' ? 0.6 : 0.8);
+          const customDuration = parseFloat(element.getAttribute('data-motion-duration')) || (type === 'stagger-cards' ? 0.2 : 0.6);
           
           if (type === 'stagger-cards') {
             // Animate cards with stagger effect
