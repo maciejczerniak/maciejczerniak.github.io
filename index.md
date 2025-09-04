@@ -7,7 +7,8 @@ main_content: >
   # About me.
 
 
-  I'm Maciej, a second year student of Applied data Science and Artificial Inteligence at Breda University of Applied Sciences
+  Hi, I’m Maciej Czerniak, a Data Science and AI student passionate about using data to solve real-world problems. I love exploring machine learning, visualization, and automation — always looking for ways to turn ideas into impact.
+  Curious about what I’ve built? Check out my projects below!
 footer: true
 permalink: /
 ---
@@ -15,7 +16,13 @@ permalink: /
 
 ## My story
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean consequat porta lorem, non auctor magna aliquet ac. Nam finibus in massa quis molestie. Vestibulum malesuada iaculis consequat. Phasellus sagittis, nisl non semper vestibulum, tellus enim interdum purus, ac pretium magna lectus ac turpis. Phasellus scelerisque hendrerit magna vitae fermentum. Praesent facilisis erat viverra eros tristique, id faucibus eros volutpat. Duis tempus arcu in felis sollicitudin, in sodales leo scelerisque. Nullam dapibus libero eu iaculis rhoncus.
+### From building walls to building algorithms, I’ve always been driven by a passion for creating and problem-solving.
 
-Nulla sed lorem imperdiet, efficitur velit et, mollis neque. Etiam placerat vehicula diam, a scelerisque diam posuere vel. Sed a convallis elit. Proin sodales, mi sit amet aliquam lobortis, ligula elit tristique justo, sodales placerat diam nunc vitae eros. Etiam maximus mauris eget sem varius, mollis ullamcorper metus porttitor. Aenean at elit sodales, rutrum ex tincidunt, molestie lorem. Donec in ante fermentum, pharetra dolor in, tempus nunc. Vivamus in lacinia lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+In high school, I followed a builder profile, which gave me practical skills and a mindset focused on making, fixing, and improving things. At the same time, my curiosity for technology was growing outside of school — mostly while playing video games and modifying them to improve my own gameplay. Installing mods often meant tinkering with bits of code in languages I didn’t even recognize back then. Later, I also started writing small scripts for bots — simple apps that could play parts of the game for me. Those experiments sparked a fascination with how code could automate tasks and create new possibilities.
+
+After graduation, life took me in a different direction. I spent almost nine years working in various industries, gaining experience in teamwork, responsibility, and solving problems in hands-on environments.
+
+Eventually, I wanted to try something new — and I reminded myself of the excitement I felt when “coding for fun.” That decision led me back to education, this time in a completely new field: Data Science and Artificial Intelligence. Today, I’m combining my practical background with modern technical skills, eager to keep learning and building solutions that make a real impact.
+
+Beyond academics and work, I’ve always been passionate about sports. Over the years I’ve practiced many disciplines — from running and soccer to gym and fitness — and I still stay active. Sports keep me motivated, disciplined, and remind me that progress comes step by step, just like in learning and coding.
 
