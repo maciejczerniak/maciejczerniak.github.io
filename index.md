@@ -1,7 +1,7 @@
 ---
 layout: home
 title: Home
-description:
+description: From building walls to building algorithms — discover my Data Science and AI portfolio.
 image: /assets/images/Photo2.jpg
 main_content: >
   # About me.
