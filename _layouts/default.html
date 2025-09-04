@@ -91,7 +91,7 @@
                   observer.unobserve(entry.target);
                 }
               });
-            }, { threshold: 0.02 });
+            }, { threshold: 0.2 });
             
             observer.observe(element);
           } else {
@@ -118,7 +118,7 @@
         function animateElement(element, type) {
           // Get custom delay and duration from data attributes
           const customDelay = parseFloat(element.getAttribute('data-motion-delay')) || 0;
-          const customDuration = parseFloat(element.getAttribute('data-motion-duration')) || (type === 'stagger-cards' ? 0.2 : 0.6);
+          const customDuration = parseFloat(element.getAttribute('data-motion-duration')) || (type === 'stagger-cards' ? 0.6 : 0.8);
           
           if (type === 'stagger-cards') {
             // Animate cards with stagger effect
@@ -131,7 +131,7 @@
                 },
                 { 
                   duration: customDuration,
-                  delay: customDelay + (index * 0.01),
+                  delay: customDelay + (index * 0.1),
                   easing: 'ease-out'
                 }
               );
