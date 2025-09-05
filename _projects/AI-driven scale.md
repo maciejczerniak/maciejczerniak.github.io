@@ -73,7 +73,7 @@ A final demo video was created to showcase end-to-end functionality. You can fin
 - **Validated design through usability testing**, confirming intuitive flow and hygiene benefits.
 - **Established strong business case for supermarkets:** lower shrink, faster throughput, and improved customer satisfaction.
 
-## Demo
+<!-- ## Demo
 
 <video
   controls
@@ -82,4 +82,4 @@ A final demo video was created to showcase end-to-end functionality. You can fin
   <source src="{{ site.baseurl }}/assets/videos/Demo-AI-driven_scale.mp4" type="video/mp4">
   <source src="{{ site.baseurl }}/assets/videos/Demo-AI-driven_scale.webm" type="video/webm">
   Sorry, your browser doesn’t support embedded videos.
-</video>
+</video> -->
