@@ -64,7 +64,7 @@ The dashboard also included a FAQ page, which explains:
 
 This provided users with important context for understanding the model and its outputs.
 
-## Demo
+<!-- ## Demo
 
 <video
   controls
@@ -73,10 +73,6 @@ This provided users with important context for understanding the model and its o
   <source src="{{ site.baseurl }}/assets/videos/vxn_predictor-demo.mp4" type="video/mp4">
   <source src="{{ site.baseurl }}/assets/videos/vxn_predictor-demo.webm" type="video/webm">
   Sorry, your browser doesn’t support embedded videos.
-</video>
+</video> -->
 
 \* **Move Tickers** was a fictional client created by the university for the purposes of this project.
-
-You can find it on Github:
-
-- <https://github.com>
