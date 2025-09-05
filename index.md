@@ -9,6 +9,7 @@ main_content: >
 
   Hi, I’m Maciej Czerniak, a Data Science and AI student passionate about using data to solve real-world problems. I love exploring machine learning, visualization, and automation — always looking for ways to turn ideas into impact.
   
+
   Curious about what I’ve built? Check out my projects below!
 footer: true
 permalink: /
