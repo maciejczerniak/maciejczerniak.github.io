@@ -2,6 +2,7 @@
 layout: project
 title: 📈 VXN Predictor
 image: "/assets/images/vxn_dashboard_img.png"
+video: "/assets/videos/vxn_predictor-demo.mp4"
 tags:
   - streamlit
   - python
