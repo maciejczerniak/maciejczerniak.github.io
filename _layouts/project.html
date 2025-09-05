@@ -10,10 +10,8 @@ layout: default
 
     <video
       class="w-full rounded-lg mb-6"
-      autoplay
-      muted
-      loop
-      playsinline
+      preload
+      controls
       poster="{{ page.image }}"
     >
       <source src="{{ page.video | relative_url }}" type="video/mp4">
