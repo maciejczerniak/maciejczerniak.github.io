@@ -1586,6 +1586,9 @@
     .hover\:bg-gray-50:hover {
       background-color: var(--color-gray-50);
     }
+    .hover\:color-gray-600:hover {
+      background-color: var(--color-gray-600);
+    }
     .hover\:bg-slate-700:hover {
       background-color: var(--color-slate-700);
     }
