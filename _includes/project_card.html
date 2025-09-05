@@ -9,7 +9,7 @@
         <h2 class="font-semibold text-2xl hover:underline text-white text-center px-4 ">{{include.project.title}}</h2>
       </div>
     </div>
-    <div class="my-4">
+    <div class="my-4 justify-center">
       {% for tag in include.project.tags %}
       <category class="font-mulish text-sm text-gray-700">#{{ tag | xml_escape }}</category>
       {% endfor %}
