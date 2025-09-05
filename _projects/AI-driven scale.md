@@ -2,6 +2,7 @@
 layout: project
 title: AI-Driven Scale
 image: "/assets/images/AI-driven_scale.png"
+video: "/assets/videos/Demo-AI-driven_scale.mp4"
 tags:
   - streamlit
   - python
