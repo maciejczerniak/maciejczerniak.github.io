@@ -17,7 +17,7 @@ permalink: /
 
 ## My story
 
-#### From building walls to building algorithms, I’ve always been driven by a passion for creating and problem-solving.
+#### *From building walls to building algorithms, I’ve always been driven by a passion for creating and problem-solving.*
 
 In high school, I followed a builder profile, which gave me practical skills and a mindset focused on making, fixing, and improving things. At the same time, my curiosity for technology was growing outside of school — mostly while playing video games and modifying them to improve my own gameplay. Installing mods often meant tinkering with bits of code in languages I didn’t even recognize back then. Later, I also started writing small scripts for bots — simple apps that could play parts of the game for me. Those experiments sparked a fascination with how code could automate tasks and create new possibilities.
 
