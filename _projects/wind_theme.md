@@ -8,5 +8,4 @@ image: >-
 Wind is a clean, minimalistic Jekyll theme designed to offer a delightful blogging experience. With a focus on simplicity and aesthetics, Wind brings an elegant touch to your blog or personal website.
 <h4>Dashboard</h4>
     <p>Below is the interactive Power BI dashboard that was the final deliverable for this project.</p>
-    <iframe title="SDGIndicatorsDashboard_MaciejCzerniak" width="600" height="373.5" src="https://app.powerbi.com/groups/c6c0a638-26c8-48a2-9b5f-26d924cab18f/reports/f3e145c9-2dbc-40b1-a68e-4d154fe9a8c3/822fb4941e4174006013?experience=power-bi" frameborder="0" allowFullScreen="true"></iframe>
-<https://github.com/a-chacon/wind>
+    <iframe title="MaciejCzerniak_SDG_Indicators_Dashboard" width="600" height="373.5" src="https://app.powerbi.com/groups/c6c0a638-26c8-48a2-9b5f-26d924cab18f/reports/f3e145c9-2dbc-40b1-a68e-4d154fe9a8c3/822fb4941e4174006013?experience=power-bi" frameborder="0" allowFullScreen="true"></iframe>
