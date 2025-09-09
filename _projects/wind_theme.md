@@ -13,6 +13,6 @@ image: >-
 
     <h4>Dashboard</h4>
       <p>Below is the interactive Power BI dashboard that was the final deliverable for this project.</p>
-      <iframe title="MaciejCzerniak_SDG_Indicators_Dashboard" width="600" height="373.5" src="https://app.powerbi.com/groups/c6c0a638-26c8-48a2-9b5f-26d924cab18f/reports/f3e145c9-2dbc-40b1-a68e-4d154fe9a8c3/822fb4941e4174006013?experience=power-bi" frameborder="0" allowFullScreen="true"></iframe>
+      <iframe title="MaciejCzerniak_SDG_Indicators_Dashboard" width="600" height="373.5" src="https://app.powerbi.com/links/J13ENqaj_5?ctid=0a33589b-0036-4fe8-a829-3ed0926af886&pbi_source=linkShare" frameborder="0" allowFullScreen="true"></iframe>
   </div>
 </div>
