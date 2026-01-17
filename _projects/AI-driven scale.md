@@ -1,5 +1,6 @@
 ---
 layout: project
+date: 2025-05-17
 title: AI-Driven Scale
 image: "/assets/images/ai_driven_scale/AI-driven_scale.png"
 video: "/assets/videos/Demo-AI-driven_scale.mp4"

@@ -1,5 +1,6 @@
 ---
 layout: project
+date: 2024-11-01
 title: 💧 SDG 6 – Safe Drinking Water Analytics Dashboard
 image: /assets/images//clean_water_access/SDG_6-clean_water_and_sanitation.png
 tags:
