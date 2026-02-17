@@ -2,7 +2,7 @@
 layout: project
 date: 2026-01-30
 title: Query Assistant
-image: "/assets/images/text_to_sql/query_assistant/Text-to-sql_chatbot_3.png"
+image: "/assets/images/query_assistant/Text-to-sql_chatbot_3.png"
 video: "/assets/videos/Text-to-sql_chatbot.mp4"
 tags:
   - streamlit
