@@ -1,7 +1,8 @@
 ---
 layout: project
 date: 2026-01-16
-title: 🌱 Root Inoculatuon System
+title: Root Inoculation System
+description: Vision-guided root detection and robotic inoculation pipeline.
 image: "/assets/gifs/pid_sim.gif"
 tags:
   - machine_learning

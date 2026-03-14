@@ -10,9 +10,9 @@
       </div>
     </div>
     <div class="my-4">
-      {% for tag in include.project.tags %}
-      <category class="font-mulish text-sm text-gray-700">#{{ tag | xml_escape }}</category>
-      {% endfor %}
+      {% if include.project.description %}
+      <p class="font-mulish text-sm text-gray-700 dark:text-gray-300">{{ include.project.description | xml_escape }}</p>
+      {% endif %}
     </div>
   </a>
 </div>
