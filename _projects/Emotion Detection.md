@@ -12,7 +12,7 @@ presentation: "/assets/presentations/emotion_detection_cia/Emotion in TV Shows.p
 
 This project presents a complete **natural language processing pipeline for emotion detection in television content**. The system processes raw video files, converts speech to text, and classifies emotional tone using a fine-tuned **RoBERTa transformer model**.
 
-The solution was developed for a **[Content Intelligence Agency]**(https://www.contentintelligence.nl/) that previously relied on expensive cloud-based large language model APIs. The goal was to design a **local, transparent, and cost-efficient alternative** while maintaining strong predictive performance.
+The solution was developed for a **[Content Intelligence Agency](https://www.contentintelligence.nl/)** that previously relied on expensive cloud-based large language model APIs. The goal was to design a **local, transparent, and cost-efficient alternative** while maintaining strong predictive performance.
 
 The final system converts video content into structured emotional annotations, enabling media analysts to identify emotional patterns across dialogue in television programs.
 
