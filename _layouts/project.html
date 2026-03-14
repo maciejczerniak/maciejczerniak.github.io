@@ -234,11 +234,13 @@ layout: default
     {% if page.image %}
     {% unless page.video %}
     {% unless page.presentation %}
+    {% unless page.hide_page_image %}
     <img
       class="w-full rounded-lg mb-6"
       src="{{ page.image | relative_url }}"
       alt="{{ page.title }}"
     />
+    {% endunless %}
     {% endunless %}
     {% endunless %}
     {% endif %}
