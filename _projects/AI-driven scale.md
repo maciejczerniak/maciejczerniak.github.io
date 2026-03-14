@@ -2,7 +2,7 @@
 layout: project
 date: 2025-05-17
 title: AI-Driven Scale
-description: Computer vision scale that automatically recognizes produce to speed up and simplify supermarket checkout.
+description: Computer vision system that automatically recognizes fruits and vegetables on supermarket scales. By replacing manual PLU entry, it speeds up checkout while reducing labeling errors.
 image: "/assets/images/ai_driven_scale/AI-driven_scale.png"
 video: "/assets/videos/Demo-AI-driven_scale.mp4"
 ---

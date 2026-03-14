@@ -2,7 +2,7 @@
 layout: project
 date: 2024-11-01
 title: SDG 6 - Safe Drinking Water Analytics Dashboard
-description: Data analytics dashboard exploring relationships between GDP, aid, and clean water access in Southeast Asia.
+description: Interactive Power BI dashboard analyzing access to safe drinking water in Southeast Asia. The project explores how GDP and development aid influence progress toward UN Sustainable Development Goal 6.
 image: /assets/images/clean_water_access/SDG_6-clean_water_and_sanitation.png
 hide_page_image: true
 ---
