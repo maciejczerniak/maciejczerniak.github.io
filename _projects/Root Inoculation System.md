@@ -5,15 +5,14 @@ date: 2026-01-16
 title: Root Inoculation System
 description: Computer vision and robotics pipeline for automated root detection and precision plant inoculation. The system links image-based root analysis with robotic control to enable scalable plant–microbe experiments.
 image: "/assets/gifs/pid_sim.gif"
-client: Netherlands Plant Eco-phenotyping Centre (NPEC)
-context: Applied research collaboration
+client: Netherlands Plant Eco-phenotyping Centre ([NPEC](https://www.npec.nl/))
 ---
 
 ## Overview
 
 This project focuses on automating the root inoculation process in plant–microbe interaction experiments. While modern phenotyping systems automate plant growth and imaging, root inoculation is still performed manually, making large-scale, reproducible experiments difficult.
 
-The project was developed for the Netherlands Plant Eco-phenotyping Centre ([NPEC](https://www.npec.nl/)) and demonstrates how computer vision and robotics can be combined into a closed-loop system that links image analysis directly to robotic action.
+The project was developed for the Netherlands Plant Eco-phenotyping Centre (**[NPEC]**(https://www.npec.nl/)) and demonstrates how computer vision and robotics can be combined into a closed-loop system that links image analysis directly to robotic action.
 
 The result is an end-to-end pipeline that detects roots from images, identifies biologically relevant root locations, and guides a robot to perform precise, automated inoculation.
 
