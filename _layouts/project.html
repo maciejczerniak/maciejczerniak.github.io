@@ -13,9 +13,11 @@ layout: default
     {% if page.presentation contains '://' %}
       {% assign presentation_src = page.presentation %}
     {% else %}
-      {% assign presentation_src = page.presentation | relative_url %}
+      {% assign presentation_src = page.presentation | uri_escape | relative_url %}
     {% endif %}
     <h2>Presentation</h2>
+    {% assign presentation_path = page.presentation | downcase %}
+    {% if page.presentation contains '://' %}
     <iframe
       class="w-full rounded-lg mb-6"
       src="{{ presentation_src }}"
@@ -24,6 +26,28 @@ layout: default
       allowfullscreen
       style="min-height: 38rem; border: 0;"
     ></iframe>
+    {% elsif presentation_path contains '.pdf' %}
+    <object
+      class="w-full rounded-lg mb-6"
+      data="{{ presentation_src }}"
+      type="application/pdf"
+      style="height: 38rem;"
+    >
+      <p>
+        This browser could not display the presentation inline.
+        <a href="{{ presentation_src }}" target="_blank" rel="noopener noreferrer">Open the PDF</a>.
+      </p>
+    </object>
+    {% else %}
+    <iframe
+      class="w-full rounded-lg mb-6"
+      src="{{ presentation_src }}"
+      title="{{ page.title }} presentation"
+      loading="lazy"
+      allowfullscreen
+      style="min-height: 38rem; border: 0;"
+    ></iframe>
+    {% endif %}
     {% endif %}
 
     {% if page.video %}
