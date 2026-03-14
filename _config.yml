@@ -1,4 +1,5 @@
 title: My portfolio
+lang: en
 logo: /assets/images/logo.avif
 baseurl: /awesome-jekyll-theme
 
@@ -33,15 +34,6 @@ contact_channels:
 plugins:
   - jekyll-archives
   - jekyll-seo-tag
-  - jekyll-polyglot
-
-##
-# Polyglot configuration
-##
-languages: ["en"]
-default_lang: "en"
-exclude_from_localization: ["javascript", "images", "css", "public"]
-parallel_localization: true
 
 ##
 # Archives configuration

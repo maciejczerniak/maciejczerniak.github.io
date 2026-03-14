@@ -19,8 +19,7 @@ layout: default
     </div>
     {% if site.contact_channels_section %}
     <p class="mt-4">
-      {{ site.data[site.active_lang].strings.home.contact_me | default:
-      site.data['en'].strings.home.contact_me}}
+      {{ site.data.en.strings.home.contact_me }}
     </p>
 
     {%include contact_channels.html %} {% endif %}
@@ -34,8 +33,7 @@ layout: default
 >
   <div class="py-16 w-full">
     <h2 class="text-3xl font-bold text-center md:text-left" data-motion="fadeInUp">
-      {{ site.data[site.active_lang].strings.home.blog_title | default:
-      site.data['en'].strings.home.blog_title}}
+      {{ site.data.en.strings.home.blog_title }}
     </h2>
     <div
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-12 gap-y-16 py-8 md:py-16"
@@ -52,8 +50,7 @@ layout: default
         class="font-mulish text-lg hover:text-sky-400 hover:underline font-bold"
         href="{{ blog_page.url | relative_url }}"
       >
-        {{ site.data[site.active_lang].strings.home.see_more_posts | default:
-        site.data['en'].strings.home.see_more_posts}}
+        {{ site.data.en.strings.home.see_more_posts }}
       </a>
     </div>
     {% endif %}
@@ -68,10 +65,11 @@ layout: default
 >
   <div class="py-16 w-full">
     <h2 class="text-3xl font-bold text-center md:text-left" data-motion="fadeInUp">
-      {{ site.data[site.active_lang].strings.home.projects_title | default:
-      site.data['en'].strings.home.projects_title}}
+      {{ site.data.en.strings.home.projects_title }}
     </h2>
-    {% assign projects_sorted = site.projects | sort: 'date' | reverse %}
+    {% assign projects_with_order = site.projects | where_exp: "project", "project.order != nil" | sort: "order" %}
+    {% assign projects_without_order = site.projects | where_exp: "project", "project.order == nil" | sort: "date" | reverse %}
+    {% assign projects_sorted = projects_with_order | concat: projects_without_order %}
     <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-16 py-8 md:py-16" data-motion="stagger-cards">
       {% for project in projects_sorted limit:3 %} 
         {% include project_card.html project=project %} 
@@ -82,8 +80,7 @@ layout: default
         class="font-mulish text-lg hover:text-sky-400 hover:underline font-bold cta-attn"
         href="{{'/projects' | relative_url }}"
       >
-        {{ site.data[site.active_lang].strings.home.see_more_projects | default:
-        site.data['en'].strings.home.see_more_projects }}
+        {{ site.data.en.strings.home.see_more_projects }}
       </a>
     </div>
   </div>

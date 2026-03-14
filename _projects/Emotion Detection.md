@@ -1,18 +1,11 @@
 ---
 layout: project
-date: 2025-12-20
+order: 3
+date: 2025-10-20
 title: Emotion Detection Pipeline for Television Content
-description: Local NLP pipeline that detects emotions in TV dialogue.
-image: "/assets/images/emotion_pipeline/emotion_pipeline.png"
-tags:
-  - nlp
-  - transformers
-  - roberta
-  - speech-to-text
-  - explainable-ai
-  - python
-  - machine-learning
-  - media-analytics
+description: End-to-end NLP pipeline that converts video dialogue into structured emotion labels using transformer models.
+image: "/assets/images/emotion_detection_cia/cia.png"
+presentation: "/assets/presentations/Emotion in TV Shows.pdf"
 ---
 
 ## Overview
@@ -65,10 +58,10 @@ The workflow includes several stages:
    - LSTM networks
    - Transformer architectures (BERT, RoBERTa)
 
-   The **RoBERTa-base transformer** achieved the best performance and was selected as the final model. :contentReference[oaicite:0]{index=0}
+   The **RoBERTa-base transformer** achieved the best performance and was selected as the final model.
 
 5. **Emotion classification**  
-   The final model predicts **six core emotions** defined by Paul Ekman — happiness, sadness, anger, fear, surprise, and disgust — plus a neutral class. :contentReference[oaicite:1]{index=1}
+   The final model predicts **six core emotions** defined by Paul Ekman — happiness, sadness, anger, fear, surprise, and disgust — plus a neutral class.
 
 The resulting pipeline transforms a raw video into structured emotional annotations with timestamps and labeled dialogue.
 
@@ -84,7 +77,7 @@ Several interpretability methods were applied:
 - **Layer-wise Relevance Propagation (LRP)**
 - **Token removal robustness testing**
 
-These methods helped visualize which tokens influenced predictions and revealed that the model sometimes relies heavily on emotionally charged individual words. :contentReference[oaicite:2]{index=2}
+These methods helped visualize which tokens influenced predictions and revealed that the model sometimes relies heavily on emotionally charged individual words.
 
 Error analysis of misclassified sentences identified several common failure cases:
 
@@ -93,7 +86,7 @@ Error analysis of misclassified sentences identified several common failure case
 - **Emotionally loaded single words biasing predictions**
 - **Translation-related loss of nuance**
 
-Nearly **48% of errors were caused by missing context in short sentences**, highlighting a key limitation of sentence-level emotion classification. :contentReference[oaicite:3]{index=3}
+Nearly **48% of errors were caused by missing context in short sentences**, highlighting a key limitation of sentence-level emotion classification.
 
 ---
 
@@ -123,7 +116,7 @@ Nearly **48% of errors were caused by missing context in short sentences**, high
 
 ## Results
 
-The final RoBERTa model achieved the strongest performance among tested approaches with an **F1 score of approximately 0.755** on the evaluation dataset. :contentReference[oaicite:4]{index=4}
+The final RoBERTa model achieved the strongest performance among tested approaches with an **F1 score of approximately 0.755** on the evaluation dataset.
 
 The system demonstrates that transformer-based NLP models can effectively perform emotion detection on television dialogue while running on **local hardware without reliance on cloud APIs**.
 

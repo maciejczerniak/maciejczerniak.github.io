@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="dark" lang="{{site.active_lang}}">
+<html class="dark" lang="{{ site.lang | default: 'en' }}">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -154,48 +154,6 @@
       });
     </script>
     <script>
-      // Theme switcher functionality
-      document.addEventListener('DOMContentLoaded', function() {
-        const themeToggle = document.getElementById('theme-toggle');
-        const htmlElement = document.documentElement;
-        
-        // Check for saved theme preference or default to 'dark'
-        const savedTheme = localStorage.getItem('theme');
-        const systemPreference = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        const currentTheme = savedTheme || systemPreference;
-        
-        // Apply the current theme
-        if (currentTheme === 'dark') {
-          htmlElement.classList.add('dark');
-        } else {
-          htmlElement.classList.remove('dark');
-        }
-        
-        // Theme toggle event listener
-        if (themeToggle) {
-          themeToggle.addEventListener('click', function() {
-            if (htmlElement.classList.contains('dark')) {
-              htmlElement.classList.remove('dark');
-              localStorage.setItem('theme', 'light');
-            } else {
-              htmlElement.classList.add('dark');
-              localStorage.setItem('theme', 'dark');
-            }
-          });
-        }
-        
-        // Listen for system theme changes
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
-          if (!localStorage.getItem('theme')) {
-            if (e.matches) {
-              htmlElement.classList.add('dark');
-            } else {
-              htmlElement.classList.remove('dark');
-            }
-          }
-        });
-      });
-
       document.querySelectorAll(".inout > div").forEach((item) => {
         scroll(animate(item, { opacity: [0, 1, 1, 0] }), {
             target: item,

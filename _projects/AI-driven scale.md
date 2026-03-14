@@ -2,16 +2,9 @@
 layout: project
 date: 2025-05-17
 title: AI-Driven Scale
-description: Computer vision produce scale for faster and cleaner checkout.
+description: Computer vision scale that automatically recognizes produce to speed up and simplify supermarket checkout.
 image: "/assets/images/ai_driven_scale/AI-driven_scale.png"
 video: "/assets/videos/Demo-AI-driven_scale.mp4"
-tags:
-  - streamlit
-  - python
-  - image_recognition
-  - transfer_learning
-  - NN
-  - XAI
 ---
 
 ## Overview

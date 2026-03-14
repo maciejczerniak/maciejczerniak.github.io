@@ -1,19 +1,11 @@
 ---
 layout: project
+order: 2
 date: 2026-01-30
 title: Query Assistant
-description: Text-to-SQL assistant with safe querying and chart generation.
-image: "/assets/images/query_assistant/Text-to-sql_chatbot_3.png"
-video: "/assets/videos/Text-to-sql_chatbot.mp4"
-tags:
-  - streamlit
-  - python
-  - text-to-sql
-  - mysql
-  - ollama
-  - langchain
-  - data-visualization
-  - llm
+description: Natural-language analytics assistant that converts questions into SQL queries and interactive visualizations.
+image: "/assets/images/query_assistant/query_assistant.png"
+video: "/assets/videos/query_assistant_demo.mp4"
 ---
 
 ## Overview

@@ -8,6 +8,25 @@ layout: default
   <div id="post" class="prose md:prose-lg dark:prose-invert prose-img:rounded-lg max-w-[75ch] prose-neutral mx-auto pb-10 pt-20 lg:pt-[90px] lg:pb-20">
     <h1 data-motion="fadeInRight" data-motion-onscroll="false" class="text-left text-2xl font-bold md:text-5xl text-neutral-900 dark:text-neutral-100">{{page.title}}</h1>
 
+    {% if page.presentation %}
+    {% assign presentation_src = page.presentation %}
+    {% if page.presentation contains '://' %}
+      {% assign presentation_src = page.presentation %}
+    {% else %}
+      {% assign presentation_src = page.presentation | relative_url %}
+    {% endif %}
+    <h2>Presentation</h2>
+    <iframe
+      class="w-full rounded-lg mb-6"
+      src="{{ presentation_src }}"
+      title="{{ page.title }} presentation"
+      loading="lazy"
+      allowfullscreen
+      style="min-height: 38rem; border: 0;"
+    ></iframe>
+    {% endif %}
+
+    {% if page.video %}
     <h2>Demo</h2>
     <video
       class="w-full rounded-lg mb-6"
@@ -18,6 +37,7 @@ layout: default
       <source src="{{ page.video | relative_url }}" type="video/mp4">
       Your browser does not support the video tag.
     </video>
+    {% endif %}
 
     <div class="my-6" data-motion="fadeInUp" data-motion-delay="0" data-motion-onscroll="false" data-motion-duration="0">
       {{content}}

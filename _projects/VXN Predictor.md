@@ -2,17 +2,9 @@
 layout: project
 date: 2025-07-02
 title: VXN Predictor
-description: Forecasting Nasdaq-100 volatility with macro and market signals.
+description: Machine learning system that forecasts Nasdaq-100 volatility using macroeconomic and market signals.
 image: "/assets/images/vxn_predictor/vxn_dashboard_img.png"
 video: "/assets/videos/vxn_predictor-demo.mp4"
-tags:
-  - streamlit
-  - python
-  - neural-networks
-  - forecasting
-  - finance
-  - stock-market
-  - machine-learning
 ---
 
 ## Overview

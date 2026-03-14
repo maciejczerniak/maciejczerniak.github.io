@@ -1,24 +1,10 @@
 ---
 layout: project
+order: 1
 date: 2026-01-16
 title: Root Inoculation System
-description: Vision-guided root detection and robotic inoculation pipeline.
+description: Computer vision and robotics pipeline for automated root detection and precision plant inoculation.
 image: "/assets/gifs/pid_sim.gif"
-tags:
-  - machine_learning
-  - python
-  - deepLlearning
-  - robotics
-  - computer_vision
-  - end-to-end_pipeline
-  - benchmarking
-  - error_analysis
-  - reinforcement_learning
-  - keras
-  - tensorflow
-  - pytorch
-  - lmage_segmentation
-  - hyperparameter_tuning
 ---
 
 ## Overview

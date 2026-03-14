@@ -39,8 +39,7 @@ layout: default
 
     <div class="mx-auto py-8">
       <p class="text-center font-extrabold italic">
-        {{ site.data[site.active_lang].strings.post.share | default:
-        site.data['en'].strings.post.share}}
+        {{ site.data.en.strings.post.share }}
       </p>
       {% include sharing.html %}
     </div>
