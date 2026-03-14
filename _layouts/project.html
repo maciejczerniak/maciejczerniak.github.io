@@ -27,17 +27,185 @@ layout: default
       style="min-height: 38rem; border: 0;"
     ></iframe>
     {% elsif presentation_path contains '.pdf' %}
-    <object
+    <div
       class="w-full rounded-lg mb-6"
-      data="{{ presentation_src }}"
-      type="application/pdf"
-      style="height: 38rem;"
+      data-pdf-viewer
+      data-pdf-src="{{ presentation_src }}"
+      style="overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.12); background: #111827;"
     >
-      <p>
-        This browser could not display the presentation inline.
-        <a href="{{ presentation_src }}" target="_blank" rel="noopener noreferrer">Open the PDF</a>.
-      </p>
-    </object>
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: 0.9rem 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.12);">
+        <span class="font-mulish" style="font-weight: 600; color: #f5f5f5;">Slide Deck</span>
+        <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+          <button
+            type="button"
+            data-pdf-prev
+            class="font-mulish"
+            style="padding: 0.45rem 0.9rem; border-radius: 0.5rem; border: 1px solid rgba(255, 255, 255, 0.18); color: #f5f5f5; background: transparent; cursor: pointer;"
+          >
+            Previous
+          </button>
+          <span data-pdf-status class="font-mulish" style="min-width: 4.5rem; text-align: center; color: #e5e7eb;">1 / 1</span>
+          <button
+            type="button"
+            data-pdf-next
+            class="font-mulish"
+            style="padding: 0.45rem 0.9rem; border-radius: 0.5rem; border: 1px solid rgba(255, 255, 255, 0.18); color: #f5f5f5; background: transparent; cursor: pointer;"
+          >
+            Next
+          </button>
+          <a
+            href="{{ presentation_src }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="font-mulish"
+            style="padding: 0.45rem 0.9rem; border-radius: 0.5rem; border: 1px solid rgba(255, 255, 255, 0.18); color: #f5f5f5; text-decoration: none;"
+          >
+            Open PDF
+          </a>
+        </div>
+      </div>
+      <div style="padding: 1rem; background: #0a0a0a;">
+        <div style="display: flex; justify-content: center; align-items: center; min-height: 18rem;">
+          <canvas
+            data-pdf-canvas
+            style="display: block; width: 100%; max-width: 1100px; height: auto; background: #ffffff; border-radius: 0.5rem;"
+          ></canvas>
+        </div>
+        <p
+          data-pdf-error
+          class="font-mulish"
+          style="display: none; margin: 1rem 0 0; color: #fca5a5;"
+        ></p>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        if (!window.pdfjsLib) {
+          return;
+        }
+
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+        document.querySelectorAll('[data-pdf-viewer]').forEach(function (viewer) {
+          if (viewer.dataset.pdfReady === 'true') {
+            return;
+          }
+
+          viewer.dataset.pdfReady = 'true';
+
+          const pdfUrl = viewer.getAttribute('data-pdf-src');
+          const canvas = viewer.querySelector('[data-pdf-canvas]');
+          const status = viewer.querySelector('[data-pdf-status]');
+          const prevButton = viewer.querySelector('[data-pdf-prev]');
+          const nextButton = viewer.querySelector('[data-pdf-next]');
+          const errorBox = viewer.querySelector('[data-pdf-error]');
+          const context = canvas.getContext('2d');
+          let pdfDocument = null;
+          let currentPage = 1;
+          let resizeTimer = null;
+          let renderId = 0;
+
+          function setButtonState(button, enabled) {
+            button.disabled = !enabled;
+            button.style.opacity = enabled ? '1' : '0.45';
+            button.style.cursor = enabled ? 'pointer' : 'not-allowed';
+          }
+
+          function updateControls() {
+            if (!pdfDocument) {
+              status.textContent = '...';
+              setButtonState(prevButton, false);
+              setButtonState(nextButton, false);
+              return;
+            }
+
+            status.textContent = currentPage + ' / ' + pdfDocument.numPages;
+            setButtonState(prevButton, currentPage > 1);
+            setButtonState(nextButton, currentPage < pdfDocument.numPages);
+          }
+
+          function showError(message) {
+            errorBox.textContent = message;
+            errorBox.style.display = 'block';
+            status.textContent = 'Unavailable';
+            setButtonState(prevButton, false);
+            setButtonState(nextButton, false);
+          }
+
+          function renderPage(pageNumber) {
+            if (!pdfDocument) {
+              return;
+            }
+
+            const currentRenderId = ++renderId;
+            status.textContent = 'Loading...';
+
+            pdfDocument.getPage(pageNumber).then(function (page) {
+              if (currentRenderId !== renderId) {
+                return;
+              }
+
+              const baseViewport = page.getViewport({ scale: 1 });
+              const availableWidth = Math.max(320, canvas.parentElement.clientWidth);
+              const scale = availableWidth / baseViewport.width;
+              const viewport = page.getViewport({ scale: scale });
+              const outputScale = window.devicePixelRatio || 1;
+
+              canvas.width = Math.floor(viewport.width * outputScale);
+              canvas.height = Math.floor(viewport.height * outputScale);
+              canvas.style.width = viewport.width + 'px';
+              canvas.style.height = viewport.height + 'px';
+
+              const renderContext = {
+                canvasContext: context,
+                viewport: viewport,
+                transform: outputScale !== 1 ? [outputScale, 0, 0, outputScale, 0, 0] : null
+              };
+
+              return page.render(renderContext).promise;
+            }).then(function () {
+              currentPage = pageNumber;
+              errorBox.style.display = 'none';
+              updateControls();
+            }).catch(function () {
+              showError('This PDF could not be rendered in slide view. Use "Open PDF" instead.');
+            });
+          }
+
+          prevButton.addEventListener('click', function () {
+            if (pdfDocument && currentPage > 1) {
+              renderPage(currentPage - 1);
+            }
+          });
+
+          nextButton.addEventListener('click', function () {
+            if (pdfDocument && currentPage < pdfDocument.numPages) {
+              renderPage(currentPage + 1);
+            }
+          });
+
+          window.addEventListener('resize', function () {
+            if (!pdfDocument) {
+              return;
+            }
+
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function () {
+              renderPage(currentPage);
+            }, 150);
+          });
+
+          pdfjsLib.getDocument(pdfUrl).promise.then(function (pdf) {
+            pdfDocument = pdf;
+            updateControls();
+            renderPage(1);
+          }).catch(function () {
+            showError('This PDF could not be loaded. Use "Open PDF" to view it directly.');
+          });
+        });
+      });
+    </script>
     {% else %}
     <iframe
       class="w-full rounded-lg mb-6"
