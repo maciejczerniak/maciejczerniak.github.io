@@ -61,7 +61,7 @@ The workflow includes several stages:
    The **RoBERTa-base transformer** achieved the best performance and was selected as the final model.
 
 5. **Emotion classification**  
-   The final model predicts **six core emotions** defined by Paul Ekman — happiness, sadness, anger, fear, surprise, and disgust — plus a neutral class.
+   The final model predicts **six core emotions** defined by Paul Ekman - happiness, sadness, anger, fear, surprise, and disgust - plus a neutral class.
 
 The resulting pipeline transforms a raw video into structured emotional annotations with timestamps and labeled dialogue.
 
@@ -104,12 +104,12 @@ Nearly **48% of errors were caused by missing context in short sentences**, high
 
 ## Tech Stack
 
-- **Python** — core implementation
-- **PyTorch / HuggingFace Transformers** — model training
-- **RoBERTa-base** — emotion classification model
-- **Whisper / AssemblyAI** — speech-to-text transcription
-- **Scikit-learn** — classical ML experiments
-- **Explainable AI methods** — model interpretation
+- **Python** - core implementation
+- **PyTorch / HuggingFace Transformers** - model training
+- **RoBERTa-base** - emotion classification model
+- **Whisper / AssemblyAI** - speech-to-text transcription
+- **Scikit-learn** - classical ML experiments
+- **Explainable AI methods** - model interpretation
 - **NLP preprocessing pipelines**
 
 ---
