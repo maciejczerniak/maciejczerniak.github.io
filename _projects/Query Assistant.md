@@ -6,7 +6,6 @@ title: Query Assistant
 description: Natural-language analytics assistant that converts questions into SQL queries and interactive visualizations Built for Alternate.nl, it enables non-technical users to explore relational databases conversationally.
 image: "/assets/images/query_assistant/query_assistant.png"
 video: "/assets/videos/query_assistant_demo.mp4"
-client: [Alternate](https://www.alternate.nl/)
 ---
 
 ## Overview

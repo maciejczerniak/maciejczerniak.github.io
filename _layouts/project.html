@@ -6,15 +6,6 @@ layout: default
 <div class="container mx-auto">
   <div id="post" class="prose md:prose-lg dark:prose-invert prose-img:rounded-lg max-w-[75ch] prose-neutral mx-auto pb-10 pt-20 lg:pt-[90px] lg:pb-20">
     <h1 data-motion="fadeInRight" data-motion-onscroll="false" class="text-left text-2xl font-bold md:text-5xl text-neutral-900 dark:text-neutral-100">{{page.title}}</h1>
-    {% if page.client or page.context %}
-    <div class="not-prose mt-4 mb-6 flex flex-wrap gap-3 font-mulish text-sm">
-      {% if page.client %}
-      <div class="rounded-full border border-white/15 bg-white/5 px-3 py-2 text-neutral-200">
-        <span class="font-semibold text-white">Client:</span> {{ page.client }}
-      </div>
-      {% endif %}
-    </div>
-    {% endif %}
 
     {% if page.presentation %}
     {% assign presentation_src = page.presentation %}
@@ -61,15 +52,6 @@ layout: default
             >
               Next
             </button>
-            <a
-              href="{{ presentation_src }}"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="font-mulish"
-              style="padding: 0.45rem 0.9rem; border-radius: 0.5rem; border: 1px solid rgba(255, 255, 255, 0.18); color: #f5f5f5; text-decoration: none;"
-            >
-              Open PDF
-            </a>
           </div>
         </div>
         <div style="padding: 1rem; background: #0a0a0a;">
@@ -177,7 +159,7 @@ layout: default
                 errorBox.style.display = 'none';
                 updateControls();
               }).catch(function () {
-                showError('This PDF could not be rendered in slide view. Use "Open PDF" instead.');
+                showError('This PDF could not be rendered in slide view.');
               });
             }
 
@@ -209,7 +191,7 @@ layout: default
               updateControls();
               renderPage(1);
             }).catch(function () {
-              showError('This PDF could not be loaded. Use "Open PDF" to view it directly.');
+              showError('This PDF could not be loaded.');
             });
           });
         });
