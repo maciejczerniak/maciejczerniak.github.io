@@ -18,7 +18,8 @@
     </div>
     <a href="{{ include.post.url | relative_url }}"
       class="hover:underline decoration-2 underline-offset-2 text-lg font-semibold ">
-      {{ site.data.en.strings.blog.read_more }}
+      {{ site.data[site.active_lang].strings.blog.read_more | default:
+      site.data['en'].strings.blog.read_more}}
     </a>
   </div>
 

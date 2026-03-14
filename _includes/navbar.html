@@ -25,6 +25,44 @@
       {% endif%}
       {% endfor %}
 
+      {% if site.languages.size > 1 %}
+      <div class="language-switcher relative">
+        <button class="current-language px-4 hover:underline">
+          {{ site.active_lang | upcase }}
+        </button>
+
+        <div class="dropdown-content absolute hidden mt-2 py-2 bg-white dark:bg-neutral-700 rounded-sm shadow-lg z-20">
+          {% for tongue in site.languages %}
+            {% if tongue != site.active_lang %}
+            <a class="p-4 hover:underline" {% static_href
+              %}href="{% if tongue == site.default_lang %}{{site.baseurl}}{{page.url}}{% else %}{{site.baseurl}}/{{ tongue }}{{page.url}}{% endif %}"
+              {% endstatic_href %}>{{ tongue | upcase }}</a>{%- if forloop.last == false -%}{{" "}}{{ site.langsep }}{%-
+            endif -%}
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
     </div>
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const currentLangButton = document.querySelector('.current-language');
+      const dropdownContent = document.querySelector('.dropdown-content');
+
+      if (currentLangButton && dropdownContent) {
+        currentLangButton.addEventListener('click', function () {
+          dropdownContent.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', function (event) {
+          if (!currentLangButton.contains(event.target) && !dropdownContent.contains(event.target)) {
+            dropdownContent.classList.add('hidden');
+          }
+        });
+      }
+    });
+  </script>
 </nav>
