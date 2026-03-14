@@ -5,7 +5,7 @@ date: 2025-10-20
 title: Emotion Detection Pipeline for Television Content
 description: End-to-end NLP pipeline that converts video dialogue into structured emotion labels using transformer models.
 image: "/assets/images/emotion_detection_cia/cia.png"
-presentation: "/assets/presentations/Emotion in TV Shows.pdf"
+presentation: "/assets/presentations/emotion_detection_cia/Emotion in TV Shows.pdf"
 ---
 
 ## Overview
