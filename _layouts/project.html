@@ -200,6 +200,7 @@ layout: default
       <iframe
         class="w-full rounded-lg mb-6"
         src="{{ presentation_src }}"
+        title="{{ page.title }} presentation"
         loading="lazy"
         allowfullscreen
         style="min-height: 38rem; border: 0;"
@@ -207,7 +208,6 @@ layout: default
       {% endif %}
     {% endcapture %}
 
-    <h2>Presentation</h2>
     {% if page.image %}
     <div class="mb-6" data-interactive-gate>
       <div data-interactive-preview style="position: relative; overflow: hidden; border-radius: 0.75rem;">
