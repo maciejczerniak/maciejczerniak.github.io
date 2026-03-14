@@ -12,6 +12,8 @@ video: "/assets/videos/query_assistant_demo.mp4"
 
 **Query Assistant** is an AI-powered analytics chatbot that converts natural-language questions into SQL queries, executes them against a MySQL database, and returns both plain-language answers and optional visualizations. The system is designed to make structured data accessible to non-technical users while maintaining transparency through full SQL visibility.
 
+The project was developed as part of an end-of-block challenge at **Breda University of Applied Sciences**, in collaboration with [Alternate](https://www.alternate.nl/), a European e-commerce retailer specializing in computer hardware, electronics, and gaming products.
+
 The application combines a locally hosted large language model (via Ollama) with schema-aware prompting, deterministic intent parsing, and strict safety guardrails. The result is an interactive analytics assistant suitable for rapid exploration of structured datasets while remaining safe and interpretable.
 
 ## Problem
