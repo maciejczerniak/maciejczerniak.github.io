@@ -63,12 +63,16 @@ layout: default
     </video>
     {% endif %}
 
-    {% if page.image and page.video == nil and page.presentation == nil %}
+    {% if page.image %}
+    {% unless page.video %}
+    {% unless page.presentation %}
     <img
       class="w-full rounded-lg mb-6"
       src="{{ page.image | relative_url }}"
       alt="{{ page.title }}"
     />
+    {% endunless %}
+    {% endunless %}
     {% endif %}
 
     <div class="my-6" data-motion="fadeInUp" data-motion-delay="0" data-motion-onscroll="false" data-motion-duration="0">
