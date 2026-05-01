@@ -4,7 +4,7 @@
   logo: "/assets/images/experience/BUas.png"
   logo_size: "120%"
   accent: "#EE7421"
-  summary: "Developing Python-based Tangible Landscape systems that connect physical terrain models with real-time geospatial analysis, depth sensing, GIS tooling, and visualization."
+  summary: "Developing Python-based Tangible Landscape system for the Places and Flows Lab, that connecting physical terrain models with real-time geospatial analysis, depth sensing, GIS tooling, and visualization."
   highlights:
     - "Built and maintained Python workflows for real-time sensor processing, geospatial analysis, and interactive visualization."
     - "Integrated and adapted depth-sensor pipelines, including the transition from Xbox Kinect to Orbbec Femto Bolt."
