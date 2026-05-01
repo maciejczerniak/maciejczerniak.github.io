@@ -11,7 +11,7 @@ image: "/assets/gifs/pid_sim.gif"
 
 This project focuses on automating the root inoculation process in plant–microbe interaction experiments. While modern phenotyping systems automate plant growth and imaging, root inoculation is still performed manually, making large-scale, reproducible experiments difficult.
 
-The project was developed for the Netherlands Plant Eco-phenotyping Centre (**[NPEC](https://www.npec.nl/)**) and demonstrates how computer vision and robotics can be combined into a closed-loop system that links image analysis directly to robotic action.
+The project was developed for the **Netherlands Plant Eco-phenotyping Centre** (**[NPEC](https://www.npec.nl/)**) and demonstrates how computer vision and robotics can be combined into a closed-loop system that links image analysis directly to robotic action.
 
 The result is an end-to-end pipeline that detects roots from images, identifies biologically relevant root locations, and guides a robot to perform precise, automated inoculation.
 
@@ -25,43 +25,108 @@ This limits the throughput and reproducibility of plant–microbe interaction st
 
 **The key challenge:**
 
-Can we automatically detect roots from images and use this information to guide a robot to inoculate plants accurately and at scale?
+**Can we automatically detect roots from images and use this information to guide a robot to inoculate plants accurately and at scale?**
 
 ## Data
 
-- Input data: Grayscale images of plants grown in vitro on Petri dishes.
-- Annotations: Pixel-level labels for background, root, shoot, and seed.
-- Structure: Each image contains multiple plants with consistent spatial patterns.
+- **Input data:** Grayscale images of plants grown in vitro on Petri dishes.
+- **Annotations:** Pixel-level labels for background, root, shoot, and seed.
+- **Structure:** Each image contains multiple plants with consistent spatial patterns.
 
 Preprocessing included Petri dish detection, region-of-interest extraction, patch-based processing (256×256), normalization, and biologically informed data augmentation.
 
 ## Methodology
 
-Computer Vision & Segmentation
+### Computer Vision & Segmentation
 - Baselines: Single-class root segmentation using a U-Net architecture.
 - Improvement: Multiclass segmentation (background, root, shoot, seed) to provide biological context.
 - Iterations: Addressed class imbalance, fragmented predictions, and training instability through loss design, data filtering, and augmentation.
 - Evaluation metrics: F1-score, IoU, precision, recall, and learning curves.
 
-## Root System Architecture Extraction
+### Root System Architecture Extraction
 
 Segmentation outputs were post-processed using rule-based logic to handle noise and imperfect predictions. Root, shoot, and seed masks were combined to improve connectivity, and morphological operations were applied to reconnect fragmented roots.
 
 For each plant, the root tip was identified as the lowest point of the root structure, based on biological growth assumptions. This step enabled reliable extraction of root tip locations across different growth stages.
 
-## Robotics & Control
+### Robotics & Control
 
 - PID control: Implemented and tuned in simulation for precise positioning.
-- Reinforcement learning: Soft Actor-Critic (SAC) trained and evaluated as a learning-based alternative.
-- Benchmarking: Compared PID and RL in terms of accuracy and speed on random target positions.
+- Reinforcement learning: **Soft Actor-Critic (SAC)** trained and evaluated as a learning-based alternative.
+- Benchmarking: Compared **PID** and **RL** in terms of accuracy and speed on random target positions.
 
 ## Results
 
 - Multiclass segmentation significantly outperformed single-class baselines.
-- Final root segmentation achieved an F1-score of ~86.6% after hyperparameter tuning.
+- Final root segmentation achieved an **F1-score of ~86.6%** after hyperparameter tuning.
 - PID control provided higher precision and consistency (~0.39 mm mean error).
 - RL control was faster but showed higher error variance and occasional failures.
 - Benchmarking revealed a clear precision vs. speed trade-off between classical and learning-based control.
+
+### Computer Vision & Segmentation Metrics
+
+<div style="overflow-x: auto; margin: 1.5rem 0 2rem;">
+  <table style="width: 100%; min-width: 620px; border-collapse: collapse; text-align: center; font-family: Mulish, system-ui, sans-serif;">
+    <thead>
+      <tr style="background: #407c78; color: #020617;">
+        <th style="padding: 1rem; font-weight: 800;">Results</th>
+        <th style="padding: 1rem; font-weight: 800;">F1-score</th>
+        <th style="padding: 1rem; font-weight: 800;">Recall</th>
+        <th style="padding: 1rem; font-weight: 800;">IoU</th>
+        <th style="padding: 1rem; font-weight: 800;">Precision</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background: #eaf1ef; color: #020617;">
+        <td style="padding: 1rem; background: #8bb4b0;">Background</td>
+        <td style="padding: 1rem;">0.9993</td>
+        <td style="padding: 1rem;">0.9993</td>
+        <td style="padding: 1rem;">0.9986</td>
+        <td style="padding: 1rem;">0.9993</td>
+      </tr>
+      <tr style="background: #eaf1ef; color: #020617;">
+        <td style="padding: 1rem; background: #8bb4b0; border-top: 3px solid #ef4444; border-bottom: 3px solid #ef4444;">Root</td>
+        <td style="padding: 1rem; font-weight: 800; border: 3px solid #ef4444;">0.8657</td>
+        <td style="padding: 1rem; font-weight: 800; border: 3px solid #ef4444;">0.8751</td>
+        <td style="padding: 1rem; font-weight: 800; border: 3px solid #ef4444;">0.7632</td>
+        <td style="padding: 1rem; font-weight: 800; border: 3px solid #ef4444;">0.8565</td>
+      </tr>
+      <tr style="background: #eaf1ef; color: #020617;">
+        <td style="padding: 1rem; background: #8bb4b0;">Shoot</td>
+        <td style="padding: 1rem;">0.9427</td>
+        <td style="padding: 1rem;">0.9309</td>
+        <td style="padding: 1rem;">0.8916</td>
+        <td style="padding: 1rem;">0.9549</td>
+      </tr>
+      <tr style="background: #eaf1ef; color: #020617;">
+        <td style="padding: 1rem; background: #8bb4b0;">Seed</td>
+        <td style="padding: 1rem;">0.6321</td>
+        <td style="padding: 1rem;">0.6257</td>
+        <td style="padding: 1rem;">0.4621</td>
+        <td style="padding: 1rem;">0.6387</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### Controller Comparison
+
+The plots below compare how the PID and reinforcement learning controllers reduced target error over time during simulated positioning tasks.
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+  <figure style="margin: 0;">
+    <img src="{{ '/assets/images/root_inoculation_system/pid_controler.png' | relative_url }}" alt="PID controller error over time for multiple targets" style="width: 100%; border-radius: 0.5rem;" />
+    <figcaption style="margin-top: 0.75rem; font-size: 0.95rem;">
+      <strong>PID controller:</strong> stable convergence with low final error, making it well suited for precision inoculation.
+    </figcaption>
+  </figure>
+  <figure style="margin: 0;">
+    <img src="{{ '/assets/images/root_inoculation_system/rl_controler.png' | relative_url }}" alt="Reinforcement learning controller error over time for multiple targets" style="width: 100%; border-radius: 0.5rem;" />
+    <figcaption style="margin-top: 0.75rem; font-size: 0.95rem;">
+      <strong>Reinforcement learning controller:</strong> faster movement toward the target, but with less consistent final precision.
+    </figcaption>
+  </figure>
+</div>
 
 ## Deployment & Demonstration
 
