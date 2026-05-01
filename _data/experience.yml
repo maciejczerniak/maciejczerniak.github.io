@@ -8,5 +8,5 @@
   highlights:
     - "Built and maintained Python workflows for real-time sensor processing, geospatial analysis, and interactive visualization."
     - "Integrated and adapted depth-sensor pipelines, including the transition from Xbox Kinect to Orbbec Femto Bolt."
-    - "Worked on low-level C++ changes for the GRASS GIS r.in.kinect module where hardware integration required it."
+    - "Working on low-level C++ changes for the GRASS GIS r.in.kinect module where hardware integration required it."
     - "Built interactive geospatial features, including tree-planting, viewshed analysis, and topography simulations."
