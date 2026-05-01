@@ -79,14 +79,12 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background:
-    linear-gradient(135deg, rgba(45, 212, 191, 0.08), transparent 30%),
-    linear-gradient(315deg, rgba(245, 158, 11, 0.08), transparent 28%),
     linear-gradient(115deg, transparent 0 23%, rgba(148, 163, 184, 0.16) 23.1% 23.3%, transparent 23.4% 100%),
     linear-gradient(35deg, transparent 0 68%, rgba(148, 163, 184, 0.12) 68.1% 68.3%, transparent 68.4% 100%),
     linear-gradient(160deg, transparent 0 44%, rgba(148, 163, 184, 0.1) 44.1% 44.25%, transparent 44.35% 100%),
     #030712;
   background-repeat: repeat;
-  background-size: 100vw 100vh, 100vw 100vh, 920px 460px, 820px 520px, 1080px 620px, auto;
+  background-size: 920px 460px, 820px 520px, 1080px 620px, auto;
 }
 
 body > nav.fixed {
