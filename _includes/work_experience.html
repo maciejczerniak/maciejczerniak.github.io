@@ -1,0 +1,48 @@
+{% assign experience_items = site.data.experience %}
+{% if experience_items and experience_items.size > 0 %}
+<section id="experience" class="work-experience-section">
+  <div class="work-experience-shell">
+    <div class="work-experience-heading" data-motion="fadeInUp">
+      <h2>Work Experience</h2>
+    </div>
+
+    <div class="work-experience-timeline" data-motion="stagger-cards">
+      {% for experience in experience_items %}
+      <article class="work-experience-item{% unless forloop.first %} has-previous{% endunless %}{% unless forloop.last %} has-next{% endunless %}" style="--experience-accent: {{ experience.accent | default: '#2dd4bf' }};">
+        <div class="work-experience-logo-wrap">
+          <div class="work-experience-logo{% if experience.logo %} has-image{% endif %}"{% if experience.logo_size %} style="--experience-logo-size: {{ experience.logo_size }};"{% endif %} aria-hidden="true">
+            {% if experience.logo %}
+            <img src="{{ experience.logo | relative_url }}" alt="" />
+            {% elsif experience.logo_label %}
+            <span>{{ experience.logo_label }}</span>
+            {% else %}
+            <span>{{ experience.company | slice: 0 }}</span>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="work-experience-rail" aria-hidden="true"></div>
+
+        <div class="work-experience-card">
+          <p class="work-experience-period">{{ experience.period }}</p>
+          <h3>{{ experience.company }}</h3>
+          <p class="work-experience-role">{{ experience.role }}</p>
+
+          {% if experience.summary %}
+          <p class="work-experience-summary">{{ experience.summary }}</p>
+          {% endif %}
+
+          {% if experience.highlights %}
+          <ul class="work-experience-highlights">
+            {% for highlight in experience.highlights %}
+            <li>{{ highlight }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}

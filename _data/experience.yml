@@ -1,0 +1,12 @@
+- company: "Breda University of Applied Sciences"
+  role: "Student Assistant Developer"
+  period: "Nov 2024 - Present"
+  logo: "/assets/images/experience/BUas.png"
+  logo_size: "120%"
+  accent: "#EE7421"
+  summary: "Developing Python-based Tangible Landscape systems that connect physical terrain models with real-time geospatial analysis, depth sensing, GIS tooling, and visualization."
+  highlights:
+    - "Built and maintained Python workflows for real-time sensor processing, geospatial analysis, and interactive visualization."
+    - "Integrated and adapted depth-sensor pipelines, including the transition from Xbox Kinect to Orbbec Femto Bolt."
+    - "Worked on low-level C++ changes for the GRASS GIS r.in.kinect module where hardware integration required it."
+    - "Built interactive geospatial features, including tree-planting, viewshed analysis, and topography simulations."
