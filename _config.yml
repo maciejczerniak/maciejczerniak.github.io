@@ -1,7 +1,7 @@
 title: My portfolio
 active_lang: en
 logo: /assets/images/logo.avif
-baseurl: /awesome-jekyll-theme
+baseurl: ""
 
 ##
 # Collections configuration
