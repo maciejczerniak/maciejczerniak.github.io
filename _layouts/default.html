@@ -50,6 +50,10 @@
     <script>
       document.querySelectorAll("a").forEach(function (link) {
         link.addEventListener("click", function (event) {
+          if (link.hasAttribute("download")) {
+            return;
+          }
+
           event.preventDefault(); // Prevent the default link action temporarily
           link.classList.add("gentle-clicked");
 

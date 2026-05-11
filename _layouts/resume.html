@@ -1,0 +1,86 @@
+---
+layout: default
+---
+
+{% assign resume_pdf = page.pdf_path | default: "/assets/documents/resume.pdf" %}
+
+<main class="resume-page">
+  <header class="resume-page__header">
+    <h1>{{ page.title }}</h1>
+    <a class="resume-page__action" href="{{ resume_pdf | relative_url }}" download>
+      Download PDF
+    </a>
+  </header>
+
+  <div class="resume-page__document" data-pdf-url="{{ resume_pdf | relative_url }}" aria-label="Resume PDF pages">
+    <p class="resume-page__status">Loading resume...</p>
+  </div>
+</main>
+
+<script type="module">
+  import * as pdfjsLib from "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/pdf.mjs";
+
+  pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/pdf.worker.mjs";
+
+  const documentEl = document.querySelector(".resume-page__document");
+  const pdfUrl = documentEl.dataset.pdfUrl;
+  let renderVersion = 0;
+
+  async function renderResume() {
+    const currentVersion = ++renderVersion;
+    documentEl.innerHTML = '<p class="resume-page__status">Loading resume...</p>';
+
+    try {
+      const pdf = await pdfjsLib.getDocument(pdfUrl).promise;
+      const fragment = document.createDocumentFragment();
+      const pageWidth = documentEl.clientWidth;
+
+      for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
+        if (currentVersion !== renderVersion) {
+          return;
+        }
+
+        const page = await pdf.getPage(pageNumber);
+        const baseViewport = page.getViewport({ scale: 1 });
+        const outputScale = Math.min(window.devicePixelRatio || 1, 2);
+        const cssScale = pageWidth / baseViewport.width;
+        const viewport = page.getViewport({ scale: cssScale * outputScale });
+
+        const pageEl = document.createElement("section");
+        pageEl.className = "resume-pdf-page";
+        pageEl.setAttribute("aria-label", `Resume page ${pageNumber}`);
+
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d");
+        canvas.width = Math.floor(viewport.width);
+        canvas.height = Math.floor(viewport.height);
+        canvas.style.width = `${Math.floor(baseViewport.width * cssScale)}px`;
+        canvas.style.height = `${Math.floor(baseViewport.height * cssScale)}px`;
+
+        pageEl.appendChild(canvas);
+        fragment.appendChild(pageEl);
+
+        await page.render({ canvasContext: context, viewport }).promise;
+      }
+
+      if (currentVersion === renderVersion) {
+        documentEl.replaceChildren(fragment);
+      }
+    } catch (error) {
+      documentEl.innerHTML = `
+        <p class="resume-page__status">
+          The resume could not be displayed inline.
+          <a href="${pdfUrl}" download>Download the PDF instead.</a>
+        </p>
+      `;
+    }
+  }
+
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(renderResume, 250);
+  });
+
+  renderResume();
+</script>
