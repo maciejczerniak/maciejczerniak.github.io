@@ -4,11 +4,12 @@ title: Home
 description: From building walls to building algorithms - discover my Data Science and AI portfolio.
 image: /assets/images/Photo2.jpg
 main_content: >
-  # Computer Vision & Intelligent Systems
+  # Data Science & AI 
 
-  Hi, I’m **Maciej Czerniak**, a Data Science & AI student focused on **computer vision, robotics, and intelligent automation**.
+  Hi, I’m **Maciej Czerniak**, a Data Science & AI student interested in building practical, end-to-end technology solutions. My work combines **data analysis**, **machine learning**, **software development**, **cloud deployment**, and **automation**.
 
-  I build end-to-end AI systems that connect **perception, machine learning, and real-world action**.
+
+  I enjoy learning how different parts of a system fit together - from preparing data and training models to building applications, deploying solutions, and making them usable in real-world contexts.
   
 
   Explore my projects below.

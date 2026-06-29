@@ -6,6 +6,7 @@ title: SignSee - Dutch Sign Language Recognition Platform
 description: Full-stack Dutch Sign Language recognition platform with real-time webcam inference, learning flows, gamified practice, data collection, Azure ML training, and MLOps deployment workflows.
 image: "/assets/images/ngt_sign_language/NGT_Sign_Language.png"
 video: "/assets/videos/NGT_Sign_Language.mp4"
+repository: "https://github.com/maciejczerniak/NGT_Sign_Language"
 ---
 
 ## Overview

@@ -5,6 +5,7 @@ title: VXN Predictor
 description: Machine learning system forecasting Nasdaq-100 volatility using market and macroeconomic indicators. The project explores how financial signals and engineered features can predict short-term market risk.
 image: "/assets/images/vxn_predictor/vxn_dashboard_img.png"
 video: "/assets/videos/vxn_predictor-demo.mp4"
+repository: "https://github.com/maciejczerniak/VXN_Predictor"
 ---
 
 ## Overview

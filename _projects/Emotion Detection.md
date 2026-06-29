@@ -1,11 +1,11 @@
 ---
 layout: project
-order: 3
 date: 2025-10-20
 title: Emotion Detection Pipeline for Television Content
 description: End-to-end NLP pipeline that detects emotions in video dialogue using transformer models. It transforms raw video transcripts into structured emotion timelines for media analysis.
 image: "/assets/images/emotion_detection_cia/cia.png"
 presentation: "/assets/presentations/emotion_detection_cia/Emotion in TV Shows.pdf"
+repository: "https://github.com/maciejczerniak/Emotion_Detection_Pipeline"
 ---
 
 ## Overview

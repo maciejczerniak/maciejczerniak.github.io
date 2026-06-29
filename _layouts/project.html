@@ -7,6 +7,32 @@ layout: default
   <div id="post" class="prose md:prose-lg dark:prose-invert prose-img:rounded-lg max-w-[75ch] prose-neutral mx-auto pb-10 pt-20 lg:pt-[90px] lg:pb-20">
     <h1 data-motion="fadeInRight" data-motion-onscroll="false" class="text-left text-2xl font-bold md:text-5xl text-neutral-900 dark:text-neutral-100">{{page.title}}</h1>
 
+    {% if page.repository %}
+    {% capture repository_button %}
+    <a
+      href="{{ page.repository }}"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="not-prose font-mulish"
+      style="display: inline-flex; align-items: center; gap: 0.55rem; padding: 0.58rem 0.85rem; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.22); background: #f8fafc; color: #111827; font-size: 0.8rem; font-weight: 700; line-height: 1; text-decoration: none; box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);"
+      aria-label="View {{ page.title }} repository on GitHub"
+    >
+      <img
+        src="{{ '/assets/images/contact_channels/github-mark.svg' | relative_url }}"
+        alt=""
+        style="display: block; width: 1.25rem; height: 1.25rem; margin: 0;"
+        aria-hidden="true"
+      />
+      <span>View Repository</span>
+    </a>
+    {% endcapture %}
+    {% unless page.video %}
+    <div class="not-prose" style="display: flex; justify-content: flex-end; margin: 1rem 0 1rem;">
+      {{ repository_button }}
+    </div>
+    {% endunless %}
+    {% endif %}
+
     {% if page.presentation %}
     {% assign presentation_src = page.presentation %}
     {% if page.presentation contains '://' %}
@@ -267,7 +293,12 @@ layout: default
     {% endif %}
 
     {% if page.video %}
-    <h2>Demo</h2>
+    <div class="not-prose" style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin: 2.25rem 0 1rem; flex-wrap: wrap;">
+      <h2 style="margin: 0; color: inherit; font-size: 1.5rem; font-weight: 800; line-height: 1.25;">Demo</h2>
+      {% if page.repository %}
+      {{ repository_button }}
+      {% endif %}
+    </div>
     <video
       class="w-full rounded-lg mb-6"
       preload
@@ -297,8 +328,5 @@ layout: default
       {{content}}
     </div>
 
-    <div class="mx-auto py-8">
-      {% include sharing.html %}
-    </div>
   </div>
 </div>

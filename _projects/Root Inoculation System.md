@@ -1,10 +1,11 @@
 ---
 layout: project
-order: 1
+order: 2
 date: 2026-01-16
 title: Root Inoculation System
 description: Computer vision and robotics pipeline for automated root detection and precision plant inoculation. The system links image-based root analysis with robotic control to enable scalable plant–microbe experiments.
 image: "/assets/gifs/pid_sim.gif"
+repository: "https://github.com/maciejczerniak/Root_Inoculation_System"
 ---
 
 ## Overview

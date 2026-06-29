@@ -1,0 +1,4 @@
+S:/GitHub/czerniakmaciej.github.io/_site/lib/awesome-jekyll-theme/version.rb:2: warning: already initialized constant AwesomeJekyllTheme::VERSION
+S:/GitHub/czerniakmaciej.github.io/lib/awesome-jekyll-theme/version.rb:2: warning: previous definition of VERSION was here
+  Please add the following to your Gemfile to avoid polling for changes:
+    gem 'wdm', '>= 0.1.0'
