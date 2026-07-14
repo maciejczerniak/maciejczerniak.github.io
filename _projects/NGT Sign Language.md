@@ -2,8 +2,8 @@
 layout: project
 order: 1
 date: 2026-06-10
-title: SignSee - Dutch Sign Language Recognition Platform
-description: Full-stack Dutch Sign Language recognition platform with real-time webcam inference, learning flows, gamified practice, data collection, Azure ML training, and MLOps deployment workflows.
+title: SignSee - Dutch Sign Language Learning Platform
+description: Full-stack Dutch Sign Language learning platform with real-time webcam inference, learning flows, gamified practice, data collection, Azure ML training, and MLOps deployment workflows.
 image: "/assets/images/ngt_sign_language/NGT_Sign_Language.png"
 video: "/assets/videos/NGT_Sign_Language.mp4"
 repository: "https://github.com/maciejczerniak/NGT_Sign_Language"
@@ -11,7 +11,7 @@ repository: "https://github.com/maciejczerniak/NGT_Sign_Language"
 
 ## Overview
 
-**SignSee** is a full-stack Dutch Sign Language, NGT, fingerspelling recognition platform built as a year 2 capstone project. The application helps users learn, practice, and contribute new training data for static NGT alphabet signs through a webcam-based recognition system.
+**SignSee** is a full-stack Dutch Sign Language, NGT, fingerspelling learning platform built as a year 2 capstone project. The application helps users learn, practice, and contribute new training data for static NGT alphabet signs through a webcam-based recognition system.
 
 The project recognizes 22 static NGT alphabet signs: **A, B, C, D, E, F, G, H, I, K, L, M, N, O, P, Q, R, S, T, V, W, and Y**. It combines a Vue frontend, FastAPI backend, PyTorch and MediaPipe inference pipeline, PostgreSQL user progress tracking, admin monitoring, Azure ML training workflows, MLflow support, Dockerized deployment, and automated CI/CD.
 
