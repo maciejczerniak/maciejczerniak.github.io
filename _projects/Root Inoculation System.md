@@ -114,19 +114,9 @@ For each plant, the root tip was identified as the lowest point of the root stru
 
 The plots below compare how the PID and reinforcement learning controllers reduced target error over time during simulated positioning tasks.
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
-  <figure style="margin: 0;">
-    <img src="{{ '/assets/images/root_inoculation_system/pid_controler.png' | relative_url }}" alt="PID controller error over time for multiple targets" style="width: 100%; border-radius: 0.5rem;" />
-    <figcaption style="margin-top: 0.75rem; font-size: 0.95rem;">
-      <strong>PID controller:</strong> stable convergence with low final error, making it well suited for precision inoculation.
-    </figcaption>
-  </figure>
-  <figure style="margin: 0;">
-    <img src="{{ '/assets/images/root_inoculation_system/rl_controler.png' | relative_url }}" alt="Reinforcement learning controller error over time for multiple targets" style="width: 100%; border-radius: 0.5rem;" />
-    <figcaption style="margin-top: 0.75rem; font-size: 0.95rem;">
-      <strong>Reinforcement learning controller:</strong> faster movement toward the target, but with less consistent final precision.
-    </figcaption>
-  </figure>
+<div class="project-media-grid">
+  {% include project_evidence.html image="/assets/images/root_inoculation_system/pid_controler.png" alt="PID controller error over time for multiple targets" caption="<strong>PID controller:</strong> stable convergence with low final error, making it well suited for precision inoculation." %}
+  {% include project_evidence.html image="/assets/images/root_inoculation_system/rl_controler.png" alt="Reinforcement learning controller error over time for multiple targets" caption="<strong>Reinforcement learning controller:</strong> faster movement toward the target, but with less consistent final precision." %}
 </div>
 
 ## Deployment & Demonstration

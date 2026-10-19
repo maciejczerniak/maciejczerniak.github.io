@@ -1,0 +1,6 @@
+<figure class="project-evidence">
+  <a href="{{ include.image | relative_url }}" data-project-evidence aria-haspopup="dialog" aria-label="Open full-size image: {{ include.alt | escape }}">
+    <img src="{{ include.image | relative_url }}" alt="{{ include.alt | escape }}" loading="lazy" decoding="async"{% if include.width %} width="{{ include.width }}"{% endif %}{% if include.height %} height="{{ include.height }}"{% endif %} />
+  </a>
+  <figcaption>{{ include.caption }} <a href="{{ include.image | relative_url }}" data-project-evidence aria-haspopup="dialog">View full size<span class="project-evidence__sr-only">: {{ include.alt }}</span></a></figcaption>
+</figure>

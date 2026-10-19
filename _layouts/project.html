@@ -3,6 +3,11 @@ layout: default
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/monokai.css' | relative_url }}">
+<dialog class="project-lightbox" aria-label="Full-size project screenshot">
+  <button type="button" class="project-lightbox__close" aria-label="Close screenshot" autofocus>&times;</button>
+  <img class="project-lightbox__image" alt="" />
+</dialog>
+<script src="{{ '/assets/js/project-evidence.js' | relative_url }}" defer></script>
 <div class="container mx-auto">
   <div id="post" class="prose md:prose-lg dark:prose-invert prose-img:rounded-lg max-w-[75ch] prose-neutral mx-auto pb-10 pt-20 lg:pt-[90px] lg:pb-20">
     <h1 data-motion="fadeInRight" data-motion-onscroll="false" class="text-left text-2xl font-bold md:text-5xl text-neutral-900 dark:text-neutral-100">{{page.title}}</h1>
@@ -235,7 +240,7 @@ layout: default
     {% endcapture %}
 
     {% if page.image %}
-    <div class="mb-6" data-interactive-gate>
+    <div class="project-media" data-interactive-gate>
       <div data-interactive-preview style="position: relative; overflow: hidden; border-radius: 0.75rem;">
         <img
           src="{{ page.image | relative_url }}"
@@ -288,7 +293,9 @@ layout: default
       });
     </script>
     {% else %}
+    <div class="project-media">
     {{ presentation_content }}
+    </div>
     {% endif %}
     {% endif %}
 
@@ -299,8 +306,9 @@ layout: default
       {{ repository_button }}
       {% endif %}
     </div>
+    <div class="project-media">
     <video
-      class="w-full rounded-lg mb-6"
+      class="w-full rounded-lg"
       preload
       controls
       poster="{{ page.image }}"
@@ -308,23 +316,20 @@ layout: default
       <source src="{{ page.video | relative_url }}" type="video/mp4">
       Your browser does not support the video tag.
     </video>
+    </div>
     {% endif %}
 
     {% if page.image %}
     {% unless page.video %}
     {% unless page.presentation %}
     {% unless page.hide_page_image %}
-    <img
-      class="w-full rounded-lg mb-6"
-      src="{{ page.image | relative_url }}"
-      alt="{{ page.title }}"
-    />
+    {% include project_evidence.html image=page.image alt=page.title %}
     {% endunless %}
     {% endunless %}
     {% endunless %}
     {% endif %}
 
-    <div class="my-6" data-motion="fadeInUp" data-motion-delay="0" data-motion-onscroll="false" data-motion-duration="0">
+    <div class="my-6">
       {{content}}
     </div>
 

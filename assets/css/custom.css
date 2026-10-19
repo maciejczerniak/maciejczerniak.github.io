@@ -1,3 +1,194 @@
+.project-lightbox {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  max-width: none;
+  height: 100vh;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 4.5rem 1rem 1rem;
+  border: 0;
+  background: rgba(3, 7, 18, 0.96);
+  overflow: hidden;
+}
+
+.project-lightbox[open] {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr);
+  place-items: center;
+}
+
+.project-lightbox::backdrop {
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.project-lightbox__image {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  min-height: 0;
+  object-fit: contain;
+}
+
+.project-lightbox__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 1px solid rgba(248, 250, 252, 0.5);
+  border-radius: 50%;
+  color: #f8fafc;
+  background: #111827;
+  font: 2rem/1 system-ui, sans-serif;
+  cursor: pointer;
+}
+
+.project-lightbox__close:hover {
+  background: #334155;
+}
+
+.project-lightbox__close:focus-visible {
+  outline: 3px solid #5eead4;
+  outline-offset: 4px;
+}
+
+.project-evidence,
+.project-media {
+  margin: 2rem 0;
+  padding: 0.75rem;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 0.8rem;
+  background: rgba(15, 23, 42, 0.72);
+}
+
+.project-media > video,
+.project-media > iframe {
+  display: block;
+  width: 100%;
+  margin: 0;
+  border: 0;
+  border-radius: 0.5rem;
+}
+
+.project-media > video {
+  height: auto;
+}
+
+.project-media > .project-dashboard {
+  height: auto;
+  min-height: 320px;
+  aspect-ratio: 800 / 486;
+}
+
+.project-media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.project-media-grid > .project-evidence {
+  min-width: 0;
+  margin: 0;
+}
+
+.project-evidence > a {
+  display: block;
+  border-radius: 0.5rem;
+}
+
+.project-evidence img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+.project-evidence figcaption {
+  margin-top: 0.8rem;
+  padding: 0 0.2rem 0.2rem;
+  color: #cbd5e1;
+  font-size: 0.85rem;
+  line-height: 1.65;
+}
+
+.project-evidence figcaption a {
+  white-space: nowrap;
+}
+
+.project-evidence__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+#post .signsee-flow,
+#post .signsee-lifecycle {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+  padding: 0;
+  margin: 1.75rem 0;
+  list-style: none;
+  counter-reset: signsee-step;
+}
+
+#post .signsee-flow li,
+#post .signsee-lifecycle li {
+  margin: 0;
+  padding: 1rem;
+  border: 1px solid rgba(45, 212, 191, 0.3);
+  border-radius: 0.75rem;
+  background: rgba(15, 23, 42, 0.8);
+  counter-increment: signsee-step;
+}
+
+.signsee-flow li::before,
+.signsee-lifecycle li::before {
+  content: counter(signsee-step, decimal-leading-zero);
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #5eead4;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.signsee-flow strong,
+.signsee-lifecycle strong {
+  display: block;
+  color: #f8fafc;
+  font-size: 1rem;
+}
+
+.signsee-flow span,
+.signsee-lifecycle span {
+  display: block;
+  margin-top: 0.45rem;
+  color: #cbd5e1;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  #post .signsee-flow,
+  #post .signsee-lifecycle {
+    grid-template-columns: 1fr;
+  }
+}
+
 @keyframes gentle-bounce {
   0% {
     transform: translateY(0);
@@ -42,10 +233,22 @@ body::before {
 }
 
 body > nav.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
   background: rgba(3, 7, 18, 0.84) !important;
   border-bottom: 1px solid rgba(148, 163, 184, 0.14);
   box-shadow: none;
+  -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
+}
+
+/* Keep every project section beneath the navbar's frosted-glass layer. */
+#post {
+  position: relative;
+  z-index: 0;
 }
 
 .dark #page h1 {

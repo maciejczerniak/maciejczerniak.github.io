@@ -7,7 +7,9 @@ image: /assets/images/clean_water_access/SDG_6-clean_water_and_sanitation.png
 hide_page_image: true
 ---
 
-<iframe title="MaciejCzerniak_SDG_Indicators_Dashboard" width="800" height="486" src="https://app.powerbi.com/view?r=eyJrIjoiMDFmYjdlNTAtNjcyZS00MzFkLTk1NDgtYWZmOWM5NGFjY2IxIiwidCI6IjBhMzM1ODliLTAwMzYtNGZlOC1hODI5LTNlZDA5MjZhZjg4NiIsImMiOjl9&embedImagePlaceholder=true" frameborder="0" allowFullScreen="true"></iframe>
+<div class="project-media">
+  <iframe class="project-dashboard" title="MaciejCzerniak_SDG_Indicators_Dashboard" width="800" height="486" src="https://app.powerbi.com/view?r=eyJrIjoiMDFmYjdlNTAtNjcyZS00MzFkLTk1NDgtYWZmOWM5NGFjY2IxIiwidCI6IjBhMzM1ODliLTAwMzYtNGZlOC1hODI5LTNlZDA5MjZhZjg4NiIsImMiOjl9&embedImagePlaceholder=true" frameborder="0" allowFullScreen="true"></iframe>
+</div>
 
 ## Overview
 
