@@ -136,7 +136,8 @@
 }
 
 #post .signsee-flow,
-#post .signsee-lifecycle {
+#post .signsee-lifecycle,
+#post .project-workflow {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.8rem;
@@ -147,7 +148,8 @@
 }
 
 #post .signsee-flow li,
-#post .signsee-lifecycle li {
+#post .signsee-lifecycle li,
+#post .project-workflow li {
   margin: 0;
   padding: 1rem;
   border: 1px solid rgba(45, 212, 191, 0.3);
@@ -157,7 +159,8 @@
 }
 
 .signsee-flow li::before,
-.signsee-lifecycle li::before {
+.signsee-lifecycle li::before,
+.project-workflow li::before {
   content: counter(signsee-step, decimal-leading-zero);
   display: block;
   margin-bottom: 0.5rem;
@@ -167,14 +170,16 @@
 }
 
 .signsee-flow strong,
-.signsee-lifecycle strong {
+.signsee-lifecycle strong,
+.project-workflow strong {
   display: block;
   color: #f8fafc;
   font-size: 1rem;
 }
 
 .signsee-flow span,
-.signsee-lifecycle span {
+.signsee-lifecycle span,
+.project-workflow span {
   display: block;
   margin-top: 0.45rem;
   color: #cbd5e1;
@@ -184,7 +189,8 @@
 
 @media (max-width: 640px) {
   #post .signsee-flow,
-  #post .signsee-lifecycle {
+  #post .signsee-lifecycle,
+  #post .project-workflow {
     grid-template-columns: 1fr;
   }
 }

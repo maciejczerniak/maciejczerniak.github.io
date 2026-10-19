@@ -3,7 +3,7 @@ layout: project
 order: 3
 date: 2026-01-30
 title: Query Assistant
-description: Natural-language analytics assistant that converts questions into SQL queries and interactive visualizations Built for Alternate.nl, it enables non-technical users to explore relational databases conversationally.
+description: Natural-language analytics assistant that turns questions into MySQL queries, result tables, and optional charts. Developed in collaboration with Alternate.nl, with schema-aware prompts and query validation.
 image: "/assets/images/query_assistant/query_assistant.png"
 video: "/assets/videos/query_assistant_demo.mp4"
 repository: "https://github.com/maciejczerniak/Query_Assistant"
@@ -11,83 +11,61 @@ repository: "https://github.com/maciejczerniak/Query_Assistant"
 
 ## Overview
 
-**Query Assistant** is an AI-powered analytics chatbot that converts natural-language questions into SQL queries, executes them against a MySQL database, and returns both plain-language answers and optional visualizations. The system is designed to make structured data accessible to non-technical users while maintaining transparency through full SQL visibility.
+**Query Assistant** is a Streamlit application that turns natural-language questions into MySQL queries and displays the resulting tables and optional charts. Users can inspect the SQL behind each response and browse the available database schema.
 
-The project was developed as part of an end-of-block challenge at **Breda University of Applied Sciences**, in collaboration with **[Alternate](https://www.alternate.nl/)**, a European e-commerce retailer specializing in computer hardware, electronics, and gaming products.
-
-The application combines a locally hosted large language model (via Ollama) with schema-aware prompting, deterministic intent parsing, and strict safety guardrails. The result is an interactive analytics assistant suitable for rapid exploration of structured datasets while remaining safe and interpretable.
+The project was developed as an end-of-block challenge at **Breda University of Applied Sciences**, in collaboration with **[Alternate](https://www.alternate.nl/)**. Its focus is making structured retail data easier to explore while keeping the generated query visible.
 
 ## Problem
 
-Accessing relational data often requires SQL expertise or reliance on analysts, which slows decision-making. Traditional dashboards also require predefined queries and visualizations, limiting flexibility.
+A useful text-to-SQL interface needs more than a language model. It must ground queries in the actual database, interpret business terms consistently, handle execution failures, and render results in a form users can check.
 
-At the same time, naive text-to-SQL approaches can:
+## Implementation
 
-- generate unsafe or destructive queries,
-- produce ambiguous visualizations,
-- reduce trust due to lack of transparency.
+**Question → schema-aware prompt → SQL checks → database execution → result table or chart.**
 
-**Key challenge:**
-How can natural-language database interaction be made accessible, safe, and reliable while preserving transparency?
+The application inspects the database schema with SQLAlchemy and supplies table and column details to an Ollama model. It uses separate prompts for ordinary results and chart-oriented queries. If execution fails, the database error is passed back for a bounded number of repair attempts; repeated identical queries stop the retry loop.
 
-## Solution
+Business rules in the prompts address common retail-analysis mistakes:
 
-The project implements an end-to-end text-to-SQL workflow focused on usability and safety:
+- Gross revenue uses item price multiplied by quantity.
+- Refunds are aggregated per order before joining, to avoid double counting.
+- Weekly, monthly, and quarterly groups include the year.
+- Chart queries request one x-axis column and a small set of numeric series.
 
-1. Automatic inspection of the live database schema.
-2. Schema-aware prompt generation for SQL creation.
-3. Strict validation enforcing read-only queries.
-4. Error-aware retry loop for SQL correction.
-5. Automated visualization and plain-language answers.
+These rules guide generation; they are not a substitute for checking whether an answer matches the intended business question.
 
-Users can ask follow-up questions, reveal the generated SQL, and optionally request charts directly within the chat interface.
+## Example Interaction
 
-## Key Features
+For a request such as **“How many orders did we have each month?”**, the assistant groups order counts by month and returns a table. A follow-up such as **“Now plot those results”** can reuse the previous result without another database query.
 
-- Natural-language Q&A over structured SQL data.
-- Local LLM inference for privacy and performance.
-- Deterministic chart-intent parsing (no extra LLM calls).
-- Automatic chart generation with enforced axis consistency.
-- SQL safety guardrails preventing destructive queries.
-- Sidebar schema browser for data discovery.
-- Follow-up queries without reloading context.
+{% include project_evidence.html image="/assets/images/query_assistant/monthly-order-chart.png" alt="Query Assistant displaying a monthly order-count table and line chart" caption="Frame captured from the existing project demo: monthly order counts rendered as a Plotly line chart below the result table. The sidebar exposes the database schema." width="1920" height="1080" %}
 
-## Safety and Reliability
+The **Show SQL** control makes the executed query available for inspection. The current repository implementation keeps response wording brief and places the analytical detail in the table or chart. The demo recording shows an earlier version with longer response text.
 
-The app enforces multiple layers of protection:
+Follow-up plotting reuses stored results, but the current implementation does not provide unrestricted conversational SQL memory.
 
-- Only `SELECT` or `WITH` queries are allowed.
-- SQL comments, system schemas, and destructive keywords are blocked.
-- Queries are validated against the actual schema.
-- Optional limits and ordering stabilize chart outputs.
-- Database errors are fed back to the model for automatic correction.
+## Query Controls
 
-These measures allow flexible exploration without compromising data integrity.
+The application accepts queries starting with `SELECT` or `WITH`, checks for disallowed operations and system-schema references, and compares detected table references with the schema. SQL comments are stripped before these checks.
 
-## Data and Demo Setup
+The checks use pattern matching rather than a complete SQL parser. They do not comprehensively validate every column or guarantee that a query is semantically correct. A read-only database account provides an additional access boundary. The current query path also disables the helper's automatic row limit, so result-size controls would need attention before broader deployment.
 
-A synthetic retail dataset was generated to support realistic testing:
+## Data and Testing
 
-- Orders, order items, and returns tables.
-- Dates spanning 2024-01-01 to 2025-12-31.
-- Revenue and refund logic designed to avoid double counting.
+The repository provides a synthetic retail-data generator covering orders, order items, and returns across 2024–2025. This supports repeatable demonstrations without relying on production customer records.
 
-This controlled environment enables consistent demonstrations of revenue analytics, time-series queries, and chart generation.
+Automated tests cover configuration, SQL restrictions, prompt/output helpers, chart-intent handling, and retry behaviour. The documented CI test command includes an **80% coverage threshold**; this is a configured requirement rather than a claim about the latest run.
 
-## Tech Stack
+## Deployment and Limitations
 
-- **Streamlit** — conversational analytics interface.
-- **Ollama (local LLM)** — natural-language processing.
-- **LangChain** — prompt templates and SQL repair loops.
-- **SQLAlchemy** — schema inspection and database access.
-- **Pandas & Plotly** — data handling and visualization.
+The app supports local execution and Docker-based setup, with database and Ollama settings configured through environment variables. Ollama can be local or remote, so data handling depends on the selected endpoint.
 
-## Deployment
+The result is a demonstration of schema-grounded analytics and inspectable SQL. Ambiguous questions, expensive queries, and misleading joins still require careful evaluation before use with operational data.
 
-The assistant can be deployed locally with minimal setup:
+## Implementation References
 
-- Configure a database connection via environment variables.
-- Run the Streamlit application locally or via Docker.
-- Query the database conversationally with optional visualizations.
+- [Application and follow-up plotting](https://github.com/maciejczerniak/Query_Assistant/blob/main/main.py).
+- [SQL checks](https://github.com/maciejczerniak/Query_Assistant/blob/main/src/query_assistant/artifacts/sql_safety.py), [retry orchestration](https://github.com/maciejczerniak/Query_Assistant/blob/main/src/query_assistant/artifacts/chat_utils.py), and [business-aware prompts](https://github.com/maciejczerniak/Query_Assistant/blob/main/src/query_assistant/artifacts/llm_utils.py).
+- [Automated tests](https://github.com/maciejczerniak/Query_Assistant/tree/main/tests).
 
-This lightweight deployment approach makes the tool suitable for experimentation, demonstrations, and controlled production scenarios.
+**Tech stack:** Python, Streamlit, Ollama, LangChain, MySQL, SQLAlchemy, Pandas, Plotly, Pytest, Docker.

@@ -2,7 +2,7 @@
 layout: project
 date: 2025-10-20
 title: Emotion Detection Pipeline for Television Content
-description: End-to-end NLP pipeline that detects emotions in video dialogue using transformer models. It transforms raw video transcripts into structured emotion timelines for media analysis.
+description: Proof-of-concept NLP pipeline for emotion analysis of television dialogue. Combines transcription, optional correction, translation, local RoBERTa classification, and structured CSV output.
 image: "/assets/images/emotion_detection_cia/cia.png"
 presentation: "/assets/presentations/emotion_detection_cia/Emotion in TV Shows.pdf"
 repository: "https://github.com/maciejczerniak/Emotion_Detection_Pipeline"
@@ -10,128 +10,65 @@ repository: "https://github.com/maciejczerniak/Emotion_Detection_Pipeline"
 
 ## Overview
 
-This project presents a complete **natural language processing pipeline for emotion detection in television content**. The system processes raw video files, converts speech to text, and classifies emotional tone using a fine-tuned **RoBERTa transformer model**.
+**Emotion Detection Pipeline** is a proof of concept for analysing emotional language in television dialogue. Developed for the **[Content Intelligence Agency](https://www.contentintelligence.nl/)**, it converts audiovisual material into translated transcript segments with predicted emotion labels and confidence scores.
 
-The solution was developed for a **[Content Intelligence Agency](https://www.contentintelligence.nl/)** that previously relied on expensive cloud-based large language model APIs. The goal was to design a **local, transparent, and cost-efficient alternative** while maintaining strong predictive performance.
-
-The final system converts video content into structured emotional annotations, enabling media analysts to identify emotional patterns across dialogue in television programs.
-
----
+The project investigates replacing the client's emotion-classification stage with a fine-tuned **RoBERTa-base** model. It classifies transcript text; it does not infer emotions directly from faces, voice tone, or a person's internal state.
 
 ## Problem
 
-Analyzing emotional tone in audiovisual media is difficult at scale. Traditional approaches require manual review of transcripts or rely on cloud-based AI services.
+The client wanted a more controllable alternative to an external large-language-model classifier. The challenge was both model selection and pipeline integration: transcription errors, translation choices, and missing context can change the meaning that reaches the classifier.
 
-These solutions present several challenges:
+## Implementation
 
-- **High operational costs** due to API usage
-- **Limited transparency** in model decision processes
-- **Dependency on external providers**
-- Lack of domain-specific optimization for **television dialogue**
+**Video or audio -> transcription -> optional correction -> English translation -> RoBERTa classification -> CSV output.**
 
-**Key challenge:**
+The pipeline accepts a local file or YouTube input. The current orchestration selects **AssemblyAI** for transcription; the repository also contains a Whisper implementation. Optional autocorrection combines language checks with an Ollama-hosted model before translation and classification.
 
-How can emotional analysis of video content be performed locally, transparently, and at scale while maintaining strong predictive performance?
+RoBERTa performs the emotion classification locally. That deployment boundary matters: local classification does not make the entire configured pipeline offline, because transcription and optional correction can depend on external services.
 
----
+The classifier predicts **anger, disgust, fear, joy, neutral, sadness, and surprise**. It supports batch prediction and returns a confidence score, with an optional full class-probability distribution.
 
-## Solution
+## Structured Output
 
-The project implements an **end-to-end emotion classification pipeline** designed specifically for media transcripts.
+The saved CSV preserves transcript information and adds fields for downstream analysis:
 
-The workflow includes several stages:
+| Field | Purpose |
+| --- | --- |
+| `Sentence` | Original transcribed segment |
+| `Sentence_corrected` | Corrected segment, when autocorrection is enabled |
+| `Translation` | English text supplied to the classifier |
+| `Emotion_core` | Predicted category in the pipeline's default CSV output |
+| `confidence` | Score assigned to the selected category |
 
-1. **Speech-to-text transcription**  
-   Video audio is converted into text using two competing speech recognition systems. Word Error Rate evaluation was used to determine the most accurate transcription pipeline.
+Segment information can support downstream timelines, but the core delivered output is a structured CSV rather than a complete media-analytics dashboard. A confidence score expresses model certainty, not independently measured correctness.
 
-2. **Translation and preprocessing**  
-   Transcripts from multilingual sources were translated into English and cleaned through sentence segmentation and removal of non-verbal markers.
+## Model Development and Evaluation
 
-3. **Dataset construction and balancing**  
-   Back-translation and data augmentation were used to improve class balance and expand the dataset to **over 30,000 labeled sentences**.
+Experiments compare traditional classifiers, recurrent networks, and transformer approaches. The project presentation reports **F1 approximately 0.755** for the selected RoBERTa model. The averaging method is not specified in that presentation, so this should be read as its reported experiment result rather than a general performance guarantee.
 
-4. **Model training and evaluation**  
-   Several machine learning models were compared, including:
-   - Logistic Regression
-   - Support Vector Machines
-   - Naive Bayes
-   - LSTM networks
-   - Transformer architectures (BERT, RoBERTa)
-
-   The **RoBERTa-base transformer** achieved the best performance and was selected as the final model.
-
-5. **Emotion classification**  
-   The final model predicts **six core emotions** defined by Paul Ekman - happiness, sadness, anger, fear, surprise, and disgust - plus a neutral class.
-
-The resulting pipeline transforms a raw video into structured emotional annotations with timestamps and labeled dialogue.
-
----
+The model card documents **30,409 training and validation sentences** and a **792-sentence test set** from translated television material. It also describes both client-generated labels and manual annotation. The error-analysis report explicitly identifies mistakes in AI-generated reference labels, making label provenance and quality a limitation of the evaluation.
 
 ## Explainability and Error Analysis
 
-To better understand model behavior, the project incorporated **Explainable AI (XAI)** techniques and systematic error analysis.
+The project explores Gradient x Input attribution, layer-wise relevance propagation, and token-removal analysis to investigate sensitivity to individual words.
 
-Several interpretability methods were applied:
+{% include project_evidence.html image="/assets/images/emotion_detection_cia/token-attribution.png" alt="Stored Gradient times Input visualisation for an anger prediction on a short sentence" caption="Existing notebook visualisation for the short phrase 'How nice, seconds yes!'. It is diagnostic evidence of token sensitivity, not proof that the predicted emotion is correct." width="994" height="499" %}
 
-- **Gradient × Input attribution**
-- **Layer-wise Relevance Propagation (LRP)**
-- **Token removal robustness testing**
+Error analysis groups failures involving missing context, similarity between emotion classes, emotionally charged words, translation errors, and questionable reference labels. Short utterances can support several readings, so a sentence-level label may disagree with the surrounding scene.
 
-These methods helped visualize which tokens influenced predictions and revealed that the model sometimes relies heavily on emotionally charged individual words.
+The practical lesson is to inspect the full chain: better classification alone cannot recover information lost during transcription, translation, or sentence splitting.
 
-Error analysis of misclassified sentences identified several common failure cases:
+## Software and Limitations
 
-- **Contextual misunderstandings** in short sentences
-- **Ambiguous emotional expressions**
-- **Emotionally loaded single words biasing predictions**
-- **Translation-related loss of nuance**
+The repository provides a command-line pipeline, configuration and logging helpers, classifier interfaces, and automated tests for pipeline stages and services. Saved transcription artifacts and CSV outputs support inspection between stages.
 
-Nearly **48% of errors were caused by missing context in short sentences**, highlighting a key limitation of sentence-level emotion classification.
+The model card identifies the work as an eight-week **proof of concept**, with class imbalance and limited domain coverage. Broader use would require an audited evaluation set, clearer separation of label sources, and tests on new programmes and languages. Scene context and temporal aggregation are useful future improvements rather than demonstrated core capabilities.
 
----
+## Implementation References
 
-## Key Features
+- [Pipeline orchestration and service dependencies](https://github.com/maciejczerniak/Emotion_Detection_Pipeline/blob/main/src/emotion_detection_pipeline/pipeline.py).
+- [Classifier and output fields](https://github.com/maciejczerniak/Emotion_Detection_Pipeline/blob/main/src/emotion_detection_pipeline/classifier/classify.py).
+- [Model card](https://github.com/maciejczerniak/Emotion_Detection_Pipeline/blob/main/docs/model_card.md) and [project presentation](https://github.com/maciejczerniak/Emotion_Detection_Pipeline/blob/main/docs/presentation.pdf).
+- [Attribution experiments](https://github.com/maciejczerniak/Emotion_Detection_Pipeline/blob/main/experiments/explainability/XAI.ipynb) and [error-analysis report](https://github.com/maciejczerniak/Emotion_Detection_Pipeline/blob/main/experiments/error_analysis/Task%209%20Report%20%28Error%20Analysis%29.pdf).
 
-- End-to-end **video → emotion analytics pipeline**
-- Local **transformer-based emotion classifier**
-- Dataset of **30k+ annotated dialogue lines**
-- Support for **six core emotions + neutral**
-- Integration of **speech recognition and NLP**
-- **Explainable AI visualizations** for model interpretation
-- Systematic **error analysis framework**
-
----
-
-## Tech Stack
-
-- **Python** - core implementation
-- **PyTorch / HuggingFace Transformers** - model training
-- **RoBERTa-base** - emotion classification model
-- **Whisper / AssemblyAI** - speech-to-text transcription
-- **Scikit-learn** - classical ML experiments
-- **Explainable AI methods** - model interpretation
-- **NLP preprocessing pipelines**
-
----
-
-## Results
-
-The final RoBERTa model achieved the strongest performance among tested approaches with an **F1 score of approximately 0.755** on the evaluation dataset.
-
-The system demonstrates that transformer-based NLP models can effectively perform emotion detection on television dialogue while running on **local hardware without reliance on cloud APIs**.
-
----
-
-## Impact and Applications
-
-This pipeline enables media organizations to automatically analyze emotional tone in audiovisual content.
-
-Potential applications include:
-
-- Emotion timelines across TV episodes
-- Content moderation and analysis
-- Audience engagement research
-- Automated highlight detection
-- Narrative analysis in media production
-
-By replacing external AI services with a local transformer model, the project demonstrates how **modern NLP can deliver scalable and interpretable emotion analytics for creative media industries.**
+**Tech stack:** Python, PyTorch, Hugging Face Transformers, RoBERTa, AssemblyAI, Whisper, Ollama, Pandas, Pytest.

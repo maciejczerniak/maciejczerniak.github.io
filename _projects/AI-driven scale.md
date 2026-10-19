@@ -2,7 +2,7 @@
 layout: project
 date: 2025-05-17
 title: AI-Driven Scale
-description: Computer vision system that automatically recognizes fruits and vegetables on supermarket scales. By replacing manual PLU entry, it speeds up checkout while reducing labeling errors.
+description: Streamlit produce-recognition prototype using EfficientNet-B0, simulated weighing, and LIME/Grad-CAM explanations. Combines computer vision experiments with usability research for a supermarket-scale workflow.
 image: "/assets/images/ai_driven_scale/AI-driven_scale.png"
 video: "/assets/videos/Demo-AI-driven_scale.mp4"
 repository: "https://github.com/maciejczerniak/AI-Driven_Scale"
@@ -10,61 +10,57 @@ repository: "https://github.com/maciejczerniak/AI-Driven_Scale"
 
 ## Overview
 
-The **AI-Driven Scale** project aims to modernize produce weighing in supermarkets by using computer vision and machine learning to automatically recognize fruits and vegetables, eliminating the need for manual PLU code entry.
+**AI-Driven Scale** is a first-year Applied Data Science & AI prototype that recognises apples, bananas, and carrots from an uploaded image or camera capture. A Streamlit interface combines classification, a simulated weight, and visual explanations of model behaviour.
 
-This solution reduces operational time by up to 60%, minimizes mislabeling errors, and addresses hygiene concerns by limiting physical contact with shared touchscreens. It was developed as part of my **Applied Data Science & AI coursework in the first year of university**, showcasing an early blend of business understanding, technical implementation, and human-centered design applied to a practical retail use case.
+The project explores how computer vision could simplify supermarket produce weighing. The working prototype demonstrates the interaction and recognition pipeline; it does not connect to a physical weighing sensor or supermarket checkout system.
 
 ## Problem
 
-Traditional supermarket scales rely on manual or semi-automated PLU entry, leading to:
-- **Inefficiency:** Customers spend unnecessary time searching for or typing codes.
-- **Error-prone processes:** Mislabeling leads to financial losses (“shrink”) and customer frustration.
-- **Hygiene risks:** Frequent touching of shared surfaces increases contamination risks.
+Manual produce selection requires customers to find the correct product or PLU code before printing a label. The design challenge was to reduce those steps while giving users a clear way to inspect and correct a prediction.
 
-**The challenge:**
-Can AI improve speed, accuracy, and hygiene in the produce weighing process?
+## Implementation
 
-## Data & Model
+**Image capture or upload → image preprocessing → produce classification → simulated weight → optional explanation.**
 
-- **Classes:** Apple, Banana, Carrot (prototype stage).
-- **Method:** Transfer learning with EfficientNetB0.
-- **Performance:** Achieved 99.01% classification accuracy on the test set.
-- **Explainability:** Integrated LIME and Grad-CAM to visualize model decisions and improve user trust.
+The application resizes images to 128 × 128 pixels and loads the saved TensorFlow/Keras model. Weight is generated in software to demonstrate the weighing flow. The explanation screen provides **LIME** and **Grad-CAM** views, connecting the predicted class to image regions the model uses.
 
-## Business Value
+Training progressed through several approaches:
 
-- **Operational efficiency:** Time per transaction reduced by up to 60%. For a store processing 5,000 weighings/day, this equals ~7 hours saved daily.
-- **Cost savings:** Preventing even 1–2% shrink (mislabeling losses) can save tens of thousands annually in a mid-sized supermarket.
-- **Improved user experience:** Faster, intuitive interactions with fewer steps.
-- **Market opportunity:** Limited adoption in Europe (Netherlands, Poland), making it a strong differentiator.
+- A dense-network baseline and custom convolutional networks.
+- Data augmentation to vary position, rotation, brightness, and contrast.
+- MobileNet transfer learning.
+- EfficientNet-B0 transfer learning with a custom three-class classifier.
 
-## Human-Centered Design
+The EfficientNet backbone was frozen during the documented fifth iteration, with a classification head trained for the produce categories. Early stopping and model checkpoints supported the experiments.
 
-The prototype was developed with human-centered AI principles:
-- **Simplicity:** Minimal steps (“Let’s Start,” “Capture Image”).
-- **Accessibility:** Large, clear buttons and readable fonts.
-- **Transparency:** Predictions shown immediately with explainability overlays.
-- **Hygiene:** Minimal touchpoints for germ-conscious users.
-- **User control:** Ability to override AI predictions if necessary.
+## Evaluation Evidence
 
-## Usability Testing
+The saved notebook output records **99.01% test accuracy** for the EfficientNet-based iteration. The confusion matrix below contains 101 examples with one misclassification. These results describe the captured experiment on three produce categories.
 
-- **Think-Aloud Study:** Users found the app intuitive and straightforward. Main improvements requested were faster responsiveness and clearer loading indicators.
-- **A/B Testing:** Compared baseline vs. larger buttons + mirrored layout. No statistically significant difference, but insights led to further UI refinements (bigger fonts, clearer hygiene cues).
+{% include project_evidence.html image="/assets/images/ai_driven_scale/efficientnet-confusion-matrix.png" alt="Saved EfficientNet test confusion matrix with one error among 101 examples" caption="Confusion matrix exported from the existing training notebook. Rows are true labels and columns are predictions; the numeric labels follow the notebook's class ordering." width="498" height="438" %}
 
-## Deployment
+{% include project_evidence.html image="/assets/images/ai_driven_scale/training-accuracy.png" alt="Training and validation accuracy curves for the fifth CNN iteration" caption="The recorded training and validation accuracy curves for the EfficientNet-based iteration. These describe the experiment, not performance across supermarket lighting, cameras, or all produce varieties." width="576" height="453" %}
 
-A **Streamlit** prototype was built to simulate the scale’s workflow, including:
-- **Image capture/upload.**
-- **Produce identification** and weight display.
-- **Label generation** simulation.
-- **XAI** (LIME/Grad-CAM) explanations.
+## Usability Research
 
-A final demo video was created to showcase end-to-end functionality. You can find it at the bottom of this page.
+Think-aloud sessions examined image capture, navigation, and understanding of the result. Feedback pointed to clearer loading indicators, faster perceived responses, and readable controls.
 
-## Results
+An A/B study compared the original interface with larger buttons, larger fonts, and a mirrored layout. The stored analysis reports **p ≈ 0.041 for one questionnaire item**. That is an item-level result; it does not establish that the revised interface improves every aspect of usability. The test assumptions and other questionnaire items need to be considered before drawing a broader conclusion.
 
-- Achieved **99.01% accuracy** in produce recognition (apples, bananas, carrots).
-- **Reduced operational time by up to 60%** compared to traditional scales.
-- **Validated design through usability testing**, confirming intuitive flow and hygiene benefits.
-- **Established strong business case for supermarkets:** lower shrink, faster throughput, and improved customer satisfaction.
+## Business Case and Limitations
+
+The business-understanding report explores potential time savings of up to **60%** and reduced mislabelling losses. These are business-case estimates based on assumed transaction volumes and external examples, rather than measured operational improvements from this prototype.
+
+The demonstrated classifier covers three produce categories. Expanding it would require more representative data, evaluation on unfamiliar cameras and backgrounds, handling of unsupported items, and integration with actual scale hardware. The usability study supports design decisions; it does not measure hygiene outcomes.
+
+## Engineering Takeaway
+
+The project connects model experimentation to a usable interface. Explainability, feedback, and the distinction between measured model performance and projected business value are as important as the classification result.
+
+## Implementation References
+
+- [Training experiments and saved evaluation figures](https://github.com/maciejczerniak/AI-Driven_Scale/blob/main/notebooks/deep_learning/deep_learning_project.ipynb).
+- [Inference and simulated weighing](https://github.com/maciejczerniak/AI-Driven_Scale/blob/main/app/inference.py) and [explanation code](https://github.com/maciejczerniak/AI-Driven_Scale/blob/main/app/XAI.py).
+- [A/B study analysis](https://github.com/maciejczerniak/AI-Driven_Scale/blob/main/experiments/ab_test/source/W8-T-Test-Student-Notebook.ipynb) and [business-case report](https://github.com/maciejczerniak/AI-Driven_Scale/blob/main/reports/business_understanding.docx).
+
+**Tech stack:** Python, TensorFlow/Keras, EfficientNet-B0, Streamlit, LIME, Grad-CAM, Poetry, Docker.

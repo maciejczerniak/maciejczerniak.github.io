@@ -3,134 +3,84 @@ layout: project
 order: 2
 date: 2026-01-16
 title: Root Inoculation System
-description: Computer vision and robotics pipeline for automated root detection and precision plant inoculation. The system links image-based root analysis with robotic control to enable scalable plant–microbe experiments.
+description: Computer vision and robotics pipeline connecting plant-root segmentation, root-tip coordinates, and simulated OT-2 inoculation. Benchmarks PID and reinforcement-learning control for precision and speed.
 image: "/assets/gifs/pid_sim.gif"
 repository: "https://github.com/maciejczerniak/Root_Inoculation_System"
 ---
 
 ## Overview
 
-This project focuses on automating the root inoculation process in plant–microbe interaction experiments. While modern phenotyping systems automate plant growth and imaging, root inoculation is still performed manually, making large-scale, reproducible experiments difficult.
+**Root Inoculation System** connects image-based plant analysis to robotic positioning for plant-microbe experiments. Developed for the **[Netherlands Plant Eco-phenotyping Centre (NPEC)](https://www.npec.nl/)**, the demonstrated system performs inoculation in an **OT-2 robot simulation**.
 
-The project was developed for the **Netherlands Plant Eco-phenotyping Centre** (**[NPEC](https://www.npec.nl/)**) and demonstrates how computer vision and robotics can be combined into a closed-loop system that links image analysis directly to robotic action.
-
-The result is an end-to-end pipeline that detects roots from images, identifies biologically relevant root locations, and guides a robot to perform precise, automated inoculation.
+The engineering task was to connect several stages that use different representations: camera pixels, segmentation masks, plant locations, millimetres on a plate, and robot coordinates.
 
 ## Problem
-Manual root inoculation is:
-- time-consuming,
-- difficult to scale,
-- prone to human variability.
 
-This limits the throughput and reproducibility of plant–microbe interaction studies, especially when hundreds or thousands of plants must be treated consistently.
+Manual root inoculation is difficult to scale consistently. Automating it requires both reliable root localisation and precise movement to the resulting target. A good segmentation result alone does not guarantee an accurate inoculation position.
 
-**The key challenge:**
+## Implementation
 
-**Can we automatically detect roots from images and use this information to guide a robot to inoculate plants accurately and at scale?**
+<ol class="project-workflow" aria-label="Root inoculation pipeline">
+  <li><strong>Detect the dish</strong><span>Crop and pad the plate image for patch-based processing.</span></li>
+  <li><strong>Segment the image</strong><span>Run the U-Net model on patches and reconstruct the mask.</span></li>
+  <li><strong>Extract root tips</strong><span>Apply morphology and locate the lowest root point per plant.</span></li>
+  <li><strong>Convert coordinates</strong><span>Map pixel locations through plate dimensions into robot space.</span></li>
+  <li><strong>Control movement</strong><span>Use PID or a trained SAC policy to approach each target.</span></li>
+  <li><strong>Evaluate inoculation</strong><span>Record target error and execution time in simulation.</span></li>
+</ol>
 
-## Data
+The computer-vision experiments progress from binary root segmentation to multiclass U-Net segmentation of background, roots, shoots, and seeds. Preprocessing includes dish detection, cropping, padding, and 256 x 256 pixel patches. Postprocessing reconstructs the full image and applies rules for fragmented roots.
 
-- **Input data:** Grayscale images of plants grown in vitro on Petri dishes.
-- **Annotations:** Pixel-level labels for background, root, shoot, and seed.
-- **Structure:** Each image contains multiple plants with consistent spatial patterns.
-
-Preprocessing included Petri dish detection, region-of-interest extraction, patch-based processing (256×256), normalization, and biologically informed data augmentation.
-
-## Methodology
-
-### Computer Vision & Segmentation
-- Baselines: Single-class root segmentation using a U-Net architecture.
-- Improvement: Multiclass segmentation (background, root, shoot, seed) to provide biological context.
-- Iterations: Addressed class imbalance, fragmented predictions, and training instability through loss design, data filtering, and augmentation.
-- Evaluation metrics: F1-score, IoU, precision, recall, and learning curves.
-
-### Root System Architecture Extraction
-
-Segmentation outputs were post-processed using rule-based logic to handle noise and imperfect predictions. Root, shoot, and seed masks were combined to improve connectivity, and morphological operations were applied to reconnect fragmented roots.
-
-For each plant, the root tip was identified as the lowest point of the root structure, based on biological growth assumptions. This step enabled reliable extraction of root tip locations across different growth stages.
-
-### Robotics & Control
-
-- PID control: Implemented and tuned in simulation for precise positioning.
-- Reinforcement learning: **Soft Actor-Critic (SAC)** trained and evaluated as a learning-based alternative.
-- Benchmarking: Compared **PID** and **RL** in terms of accuracy and speed on random target positions.
-
-## Results
-
-- Multiclass segmentation significantly outperformed single-class baselines.
-- Final root segmentation achieved an **F1-score of ~86.6%** after hyperparameter tuning.
-- PID control provided higher precision and consistency (~0.39 mm mean error).
-- RL control was faster but showed higher error variance and occasional failures.
-- Benchmarking revealed a clear precision vs. speed trade-off between classical and learning-based control.
-
-### Computer Vision & Segmentation Metrics
-
-<div style="overflow-x: auto; margin: 1.5rem 0 2rem;">
-  <table style="width: 100%; min-width: 620px; border-collapse: collapse; text-align: center; font-family: Mulish, system-ui, sans-serif;">
-    <thead>
-      <tr style="background: #407c78; color: #020617;">
-        <th style="padding: 1rem; font-weight: 800;">Results</th>
-        <th style="padding: 1rem; font-weight: 800;">F1-score</th>
-        <th style="padding: 1rem; font-weight: 800;">Recall</th>
-        <th style="padding: 1rem; font-weight: 800;">IoU</th>
-        <th style="padding: 1rem; font-weight: 800;">Precision</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr style="background: #eaf1ef; color: #020617;">
-        <td style="padding: 1rem; background: #8bb4b0;">Background</td>
-        <td style="padding: 1rem;">0.9993</td>
-        <td style="padding: 1rem;">0.9993</td>
-        <td style="padding: 1rem;">0.9986</td>
-        <td style="padding: 1rem;">0.9993</td>
-      </tr>
-      <tr style="background: #eaf1ef; color: #020617;">
-        <td style="padding: 1rem; background: #8bb4b0; border-top: 3px solid #ef4444; border-bottom: 3px solid #ef4444;">Root</td>
-        <td style="padding: 1rem; font-weight: 800; border: 3px solid #ef4444;">0.8657</td>
-        <td style="padding: 1rem; font-weight: 800; border: 3px solid #ef4444;">0.8751</td>
-        <td style="padding: 1rem; font-weight: 800; border: 3px solid #ef4444;">0.7632</td>
-        <td style="padding: 1rem; font-weight: 800; border: 3px solid #ef4444;">0.8565</td>
-      </tr>
-      <tr style="background: #eaf1ef; color: #020617;">
-        <td style="padding: 1rem; background: #8bb4b0;">Shoot</td>
-        <td style="padding: 1rem;">0.9427</td>
-        <td style="padding: 1rem;">0.9309</td>
-        <td style="padding: 1rem;">0.8916</td>
-        <td style="padding: 1rem;">0.9549</td>
-      </tr>
-      <tr style="background: #eaf1ef; color: #020617;">
-        <td style="padding: 1rem; background: #8bb4b0;">Seed</td>
-        <td style="padding: 1rem;">0.6321</td>
-        <td style="padding: 1rem;">0.6257</td>
-        <td style="padding: 1rem;">0.4621</td>
-        <td style="padding: 1rem;">0.6387</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="project-media-grid">
+  {% include project_evidence.html image="/assets/images/root_inoculation_system/segmentation-input.png" alt="Grayscale Petri-dish image containing three plants" caption="Input image preserved with the binary-segmentation experiments. Droplets and fine root structures make foreground extraction challenging." width="4112" height="3006" %}
+  {% include project_evidence.html image="/assets/images/root_inoculation_system/segmentation-example.png" alt="Binary root prediction for the paired Petri-dish image" caption="Corresponding saved binary prediction from the experiment archive. This illustrates the image-to-mask stage, rather than the final multiclass model's evaluation." width="4112" height="3006" %}
 </div>
+
+## Calibration and Integration
+
+The pipeline converts root-tip pixels to millimetres using the plate dimensions, then maps them into simulator coordinates. Plate origin, axis swapping, and offsets are explicit calibration parameters.
+
+This conversion is a central integration challenge: a consistent coordinate offset can move every inoculation away from the intended tip even when segmentation looks correct. The runnable pipeline therefore supports debug crops, simulation GIFs, and benchmark CSV output to inspect intermediate and final behaviour.
+
+## Evaluation
+
+### Segmentation
+
+The saved multiclass validation evaluation records root metrics of **F1 0.8657, recall 0.8751, IoU 0.7632, and precision 0.8565**. These assess pixel-level segmentation and should be interpreted separately from robot positioning error.
 
 ### Controller Comparison
 
-The plots below compare how the PID and reinforcement learning controllers reduced target error over time during simulated positioning tasks.
+The repository documents **95 target attempts per controller**, using a 1 mm positioning-error threshold. Error is the distance between the simulated inoculation position and the target root-tip position.
+
+| Recorded simulation measure | PID | SAC reinforcement learning |
+| --- | --- | --- |
+| Mean positioning error | 0.386 mm | 0.563 mm |
+| Mean execution time | 4.23 s | 1.10 s |
+| Attempts exceeding 1 mm | 0 / 95 | 4 / 95 |
+
+These are recorded simulator results, not measured performance on a physical robot. The timing comparison also reflects the implemented controllers and simulation settings.
 
 <div class="project-media-grid">
-  {% include project_evidence.html image="/assets/images/root_inoculation_system/pid_controler.png" alt="PID controller error over time for multiple targets" caption="<strong>PID controller:</strong> stable convergence with low final error, making it well suited for precision inoculation." %}
-  {% include project_evidence.html image="/assets/images/root_inoculation_system/rl_controler.png" alt="Reinforcement learning controller error over time for multiple targets" caption="<strong>Reinforcement learning controller:</strong> faster movement toward the target, but with less consistent final precision." %}
+  {% include project_evidence.html image="/assets/images/root_inoculation_system/pid_controler.png" alt="PID controller target-error curves" caption="PID controller error curves. The benchmark favours this controller when consistent final positioning is the priority." width="576" height="432" %}
+  {% include project_evidence.html image="/assets/images/root_inoculation_system/rl_controler.png" alt="Reinforcement-learning controller target-error curves" caption="Reinforcement-learning error curves. Recorded movement is faster on average, with more variable final error." width="571" height="432" %}
 </div>
 
-## Deployment & Demonstration
+## Software and Limitations
 
-The full pipeline was integrated and tested in simulation, demonstrating:
-- automatic root detection,
-- root tip localization,
-- and robotic inoculation guided by image analysis.
+The packaged CLI supports switching between PID and RL, headless execution, GIF recording, debug outputs, and benchmark export. Tests cover preprocessing, postprocessing, coordinate utilities, and controller behaviour.
 
-The project is visualized using simulation GIFs, learning curves, segmentation masks, and benchmarking plots to illustrate both model behavior and system-level performance.
+Root-tip extraction uses assumptions about plant arrangement and downward growth. Calibration, fragmented masks, and unusual root geometry can affect end-to-end accuracy. The supplied SAC checkpoint has 2.2 million training steps; the documented comparison is not an exhaustive optimisation of either control approach.
 
-## Key Takeaways
+## Engineering Takeaway
 
-- Biological context is critical for accurate root segmentation.
-- Classical control (PID) remains highly effective for precision-critical robotic tasks.
-- Reinforcement learning offers speed advantages but requires careful tuning and reward design.
-- End-to-end AI systems can directly support experimental workflows, not just prediction tasks.
+The project's main value is the integration from perception to action. Separate segmentation and positioning measurements make it possible to identify whether an error originates in the model, coordinate conversion, or controller.
+
+## Implementation References
+
+- [Pipeline, coordinate calibration, and benchmark documentation](https://github.com/maciejczerniak/Root_Inoculation_System/blob/main/src/root_inoculation_system/README.md).
+- [Runnable pipeline](https://github.com/maciejczerniak/Root_Inoculation_System/blob/main/src/root_inoculation_system/pipeline.py) and [controllers](https://github.com/maciejczerniak/Root_Inoculation_System/blob/main/src/root_inoculation_system/controllers.py).
+- [PID benchmark records](https://github.com/maciejczerniak/Root_Inoculation_System/blob/main/src/root_inoculation_system/benchmark_pid.csv) and [RL benchmark records](https://github.com/maciejczerniak/Root_Inoculation_System/blob/main/src/root_inoculation_system/benchmark_rl.csv).
+- [Archived segmentation experiments](https://github.com/maciejczerniak/Root_Inoculation_System/tree/main/experiments/segmentation_training).
+- [Notebook containing the saved multiclass validation metrics](https://github.com/maciejczerniak/Root_Inoculation_System/blob/main/experiments/segmentation_training/binary_unet/task_5.ipynb).
+
+**Tech stack:** Python, TensorFlow/Keras, U-Net, image processing, PyBullet OT-2 simulation, PID control, Soft Actor-Critic, Pytest.
