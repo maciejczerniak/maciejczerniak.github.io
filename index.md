@@ -2,7 +2,7 @@
 layout: home
 title: Home
 description: From building walls to building algorithms - discover my Data Science and AI portfolio.
-image: /assets/images/Photo2.jpg
+image: /assets/images/Profile.jpg
 main_content: >
   # Data Science & AI 
 
