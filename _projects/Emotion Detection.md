@@ -14,6 +14,14 @@ repository: "https://github.com/maciejczerniak/Emotion_Detection_Pipeline"
 
 The project investigates replacing the client's emotion-classification stage with a fine-tuned **RoBERTa-base** model. It classifies transcript text; it does not infer emotions directly from faces, voice tone, or a person's internal state.
 
+## Research Publication
+
+This project also contributed to a co-authored research article, *When Text Is Not Enough: Structural Limits of Text-Only Transformer-Based Emotion Classification*, published in the **2026 Bled eConference proceedings**.
+
+The study compares **SVM, Bi-LSTM, and RoBERTa** on a text-only emotion-classification pipeline. It discusses how translation, class imbalance, and missing conversational context affect the results.
+
+[Read the paper (PDF)](https://pure.buas.nl/ws/portalfiles/portal/39717994/Mitas_et_al_When_Text_Is_Not_Enough_Structural_Limits_of_Text_Only_Transformer_Based_Emotion_Classification.pdf) · [DOI](https://doi.org/10.18690/um.fov.4.2026.44).
+
 ## Problem
 
 The client wanted a more controllable alternative to an external large-language-model classifier. The challenge was both model selection and pipeline integration: transcription errors, translation choices, and missing context can change the meaning that reaches the classifier.
