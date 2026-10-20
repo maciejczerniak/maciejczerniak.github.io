@@ -1,6 +1,6 @@
 ---
 layout: project
-order: 3
+order: 4
 date: 2026-01-30
 title: Query Assistant
 description: Natural-language analytics assistant that turns questions into MySQL queries, result tables, and optional charts. Developed in collaboration with Alternate.nl, with schema-aware prompts and query validation.
