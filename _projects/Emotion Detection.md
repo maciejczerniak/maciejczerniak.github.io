@@ -1,5 +1,6 @@
 ---
 layout: project
+order: 3
 date: 2025-10-20
 title: Emotion Detection Pipeline for Television Content
 description: Proof-of-concept NLP pipeline for emotion analysis of television dialogue. Combines transcription, optional correction, translation, local RoBERTa classification, and structured CSV output.
